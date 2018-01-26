@@ -6,9 +6,16 @@ public class Ship : MonoBehaviour {
 
     public bool player;
 
-    public float speed = 2f;
+    public float moveSpeed = 2f;
+    public float rotateSpeed = 5f;
 
     public Rigidbody2D rb;
+
+    private Vector2 movement;
+    private float movHor;
+    private float movVer;
+    private float rotHor;
+    private float rotVer;
 
     private void Start()
     {
@@ -17,19 +24,41 @@ public class Ship : MonoBehaviour {
 
     private void Update()
     {
-        float hor = 0f;
-        float ver = 0f;
+        //Position
         if (player)
         {
-            hor = Input.GetAxis("Player 1 Horizontal");
-            ver = Input.GetAxis("Player 1 Vertical");
+            movHor = Input.GetAxisRaw("P1MovHor");
+            movVer = Input.GetAxisRaw("P1MovVer");
         }
         else
         {
-            hor = Input.GetAxis("Player 2 Horizontal");
-            ver = Input.GetAxis("Player 2 Vertical");
+            movHor = Input.GetAxisRaw("P2MovHor");
+            movVer = Input.GetAxisRaw("P2MovVer");
         }
 
-        rb.velocity = new Vector2(hor, ver) * speed;
+        //Rotation
+        if (player)
+        {
+            rotHor = Input.GetAxisRaw("P1RotHor");
+            rotVer = Input.GetAxisRaw("P1RotVer");
+        }
+        else
+        {
+            rotHor = Input.GetAxisRaw("P2RotHor");
+            rotVer = Input.GetAxisRaw("P2RotVer");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(movHor, movVer).normalized * moveSpeed;
+
+        if (rotHor != 0f || rotVer != 0f)
+        {
+            float angley = Mathf.Atan2(rotVer, rotHor) * Mathf.Rad2Deg;
+            angley = (angley + 360f) % 360f;
+            float angle = Mathf.LerpAngle(transform.rotation.eulerAngles.z, angley, rotateSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        }
     }
 }

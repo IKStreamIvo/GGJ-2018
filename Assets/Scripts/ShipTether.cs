@@ -14,9 +14,6 @@ public class ShipTether : MonoBehaviour {
 	void Start ()
     {
         line = GetComponent<LineRenderer>();
-
-        ship1 = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Ship>();
-        ship2 = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Ship>();
     }
 	
 	void Update ()
