@@ -232,11 +232,33 @@ Prefab:
     - target: {fileID: 114367553713236398, guid: 84bc1d515b630aa40a3e0580c31d77a4,
         type: 2}
       propertyPath: rotateSpeed
-      value: 10
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367553713236398, guid: 84bc1d515b630aa40a3e0580c31d77a4,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 50025535799635960, guid: 84bc1d515b630aa40a3e0580c31d77a4,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84bc1d515b630aa40a3e0580c31d77a4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &404363237 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114993613685168192, guid: f5369513d3870d44381467263c7e003e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1772331268}
+  m_Script: {fileID: 11500000, guid: 051de28274fff1a4c88e87824d1f9741, type: 3}
+--- !u!114 &766002852 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114367553713236398, guid: 84bc1d515b630aa40a3e0580c31d77a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 262647452}
+  m_Script: {fileID: 11500000, guid: 051de28274fff1a4c88e87824d1f9741, type: 3}
 --- !u!1 &1412923886
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +376,16 @@ Prefab:
       propertyPath: m_Loop
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114768400863033124, guid: a007f849318c4864d91314e8a9587f7b,
+        type: 2}
+      propertyPath: ship2
+      value: 
+      objectReference: {fileID: 404363237}
+    - target: {fileID: 114768400863033124, guid: a007f849318c4864d91314e8a9587f7b,
+        type: 2}
+      propertyPath: ship1
+      value: 
+      objectReference: {fileID: 766002852}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a007f849318c4864d91314e8a9587f7b, type: 2}
   m_IsPrefabParent: 0
@@ -510,6 +542,21 @@ Prefab:
     - target: {fileID: 1030877603747226, guid: f5369513d3870d44381467263c7e003e, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 114993613685168192, guid: f5369513d3870d44381467263c7e003e,
+        type: 2}
+      propertyPath: rotateSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114993613685168192, guid: f5369513d3870d44381467263c7e003e,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 50707986950219734, guid: f5369513d3870d44381467263c7e003e,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5369513d3870d44381467263c7e003e, type: 2}

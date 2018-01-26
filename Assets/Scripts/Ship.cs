@@ -61,4 +61,11 @@ public class Ship : MonoBehaviour {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         }
     }
+
+    private void OnGUI()
+    {
+        if (player) {
+            GUILayout.Label("movHor: " + movHor + " movVer: " + movVer + "\nrotHor: " + rotHor + " rotVer: " + rotVer);
+        }
+    }
 }
