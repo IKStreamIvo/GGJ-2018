@@ -7,12 +7,14 @@ public class Enemy : MonoBehaviour {
     public int health = 500;
     public float fireRate = 100f;
 
-    public float rotationSpeed = 5f;
+    //public float rotationSpeed = 5f;
 
     public bool disableAutoFire = false;
     public GameObject bullet;
     public List<Transform> bulletSpawns = new List<Transform>();
     public bool alternateFire;
+
+    public int collisionDamage = 1;
 
     protected GameObject[] players;
     protected GameObject targetPlayer;
@@ -89,6 +91,15 @@ public class Enemy : MonoBehaviour {
         else
         {
             Debug.LogError("Fort is trying to fire, but it has no bullet assigned!");
+        }
+    }
+
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameManager.instance.applyDamage(collisionDamage);
+            Destroy(transform.gameObject);
         }
     }
 }

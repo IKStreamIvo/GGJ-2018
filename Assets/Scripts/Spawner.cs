@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour {
     public bool enableShipSpawn = true;
     public float shipSpawnDelay = 0f;
     public float shipSpawnInterval = 3f;
-    public float shipVelocity = 3f;
+
     // Use this for initialization
     void Start () {
         InvokeRepeating("SpawnObstacles", obstacleSpawnDelay, obstacleSpawnInterval);
@@ -75,7 +75,7 @@ public class Spawner : MonoBehaviour {
         for (int i = 0; i < obstacle.transform.childCount; i++)
         {
             Transform child = obstacle.transform.GetChild(i);
-            if (child.tag == "Fort Spawn" && Random.Range(0, 1f) <= fortSpawnChance) 
+            if (child.tag == "Fort Spawn" && Random.Range(0, 1f) < fortSpawnChance) 
             {
                 fortSpawns.Add(child);
             }
