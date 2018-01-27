@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class GameManager : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public Vector2 Ship1Spawn;
     public Vector2 Ship2Spawn;
     public GameObject ShipTetherPrefab;
+    public GameObject bulletPrefab;
 
     public float moveSpeed = 3f;
     public float rotateSpeed = 3f;
@@ -29,8 +31,17 @@ public class GameManager : MonoBehaviour {
     private float p1charge;
     private float p2charge;
 
+    public float fireRate = (50f / 60f);
+    float lastShotp1 = 0f;
+    float lastShotp2 = 0f;
+
     private float minX, minY, maxX, maxY;
     private BoxCollider2D stageBounds;
+
+    bool playerIndexSet = false;
+    List<PlayerIndex> playerIndex = new List<PlayerIndex>();
+    List<GamePadState> state = new List<GamePadState>();
+    List<GamePadState> prevState = new List<GamePadState>();
 
     void Start ()
     {
@@ -45,6 +56,8 @@ public class GameManager : MonoBehaviour {
 
         tether.ship1 = ship1;
         tether.ship2 = ship2;
+
+        //Get Joysticks
     }
 
     void SetGameBounds()
@@ -85,13 +98,7 @@ public class GameManager : MonoBehaviour {
 	void Update ()
     {
         SetGameBounds();
-
-        p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
-        p2movement = new Vector2(Input.GetAxisRaw("P2MovHor"), Input.GetAxisRaw("P2MovVer"));
-
-        p1rotation = new Vector2(Input.GetAxisRaw("P1RotHor"), Input.GetAxisRaw("P1RotVer"));
-        p2rotation = new Vector2(Input.GetAxisRaw("P2RotHor"), Input.GetAxisRaw("P2RotVer"));
-
+        
         //Teleport
         if (tether.line.enabled)
         {
@@ -115,12 +122,12 @@ public class GameManager : MonoBehaviour {
                 float angle = ship1.transform.eulerAngles.z;
                 Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
                 Vector3 targetPos = ship1.transform.position + direction * teleportDistance;
-                float shipSize = ship1.GetComponent<CircleCollider2D>().radius;
+                float shipSize = ship1.coll.radius;
                 ///cast that point for collisions
-                Collider2D hit = Physics2D.OverlapCircle(ship1.transform.position + direction, shipSize - .2f);
+                Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
                 if(hit != null)
                 {
-                    targetPos = ship1.transform.position + direction * (teleportDistance - shipSize*2f);
+                    targetPos = ship1.transform.position + direction * (Mathf.Abs(hit.Distance(ship1.coll).distance/2f));
                 }
                 ///teleport
                 ship1.transform.position = targetPos;
@@ -133,12 +140,12 @@ public class GameManager : MonoBehaviour {
                 float angle = ship2.transform.eulerAngles.z;
                 Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
                 Vector3 targetPos = ship2.transform.position + direction * teleportDistance;
-                float shipSize = ship2.GetComponent<CircleCollider2D>().radius;
+                float shipSize = ship2.coll.radius;
                 ///cast that point for collisions
-                Collider2D hit = Physics2D.OverlapCircle(ship1.transform.position + direction, shipSize - .2f);
+                Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
                 if (hit != null)
                 {
-                    targetPos = ship2.transform.position + direction * (teleportDistance - shipSize * 2f);
+                    targetPos = ship2.transform.position + direction * (Mathf.Abs(hit.Distance(ship2.coll).distance / 2f));
                 }
                 ///teleport
                 ship2.transform.position = targetPos;
@@ -155,11 +162,35 @@ public class GameManager : MonoBehaviour {
             p1charge = 0f;
             p2charge = 0f;
         }
-        
     }
 
     private void FixedUpdate()
     {
+        //ControllerSetup();
+
+        p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
+        /*if(p1movement == new Vector2(0f, 0f))
+        {
+            try
+            {
+                p1movement = new Vector2(state[0].ThumbSticks.Left.X, state[0].ThumbSticks.Left.Y);
+            }
+            catch { }
+        }*/
+        p2movement = new Vector2(Input.GetAxisRaw("P2MovHor"), Input.GetAxisRaw("P2MovVer"));
+        if (p2movement == new Vector2(0f, 0f))
+        /*{
+            try
+            {
+                Debug.Log(state[0].PacketNumber + "    " + state[1].PacketNumber);
+                p2movement = new Vector2(state[1].ThumbSticks.Left.X, state[1].ThumbSticks.Left.Y);
+            }
+            catch { }
+        }*/
+
+        p1rotation = new Vector2(Input.GetAxisRaw("P1RotHor"), Input.GetAxisRaw("P1RotVer"));
+        p2rotation = new Vector2(Input.GetAxisRaw("P2RotHor"), Input.GetAxisRaw("P2RotVer"));
+
         ship1.rb.velocity = p1movement.normalized * moveSpeed;
         ship2.rb.velocity = p2movement.normalized * moveSpeed;
 
@@ -167,15 +198,66 @@ public class GameManager : MonoBehaviour {
         {
             float angley = Mathf.Atan2(p1rotation.y, p1rotation.x) * Mathf.Rad2Deg;
             angley = (angley + 360f) % 360f;
-            float angle = Mathf.LerpAngle(ship1.transform.rotation.eulerAngles.z, angley, rotateSpeed * Time.deltaTime);
+            float angle = Mathf.LerpAngle(ship1.transform.rotation.eulerAngles.z, angley, rotateSpeed * Time.fixedDeltaTime);
             ship1.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         }
         if (p2rotation.x != 0f || p2rotation.y != 0f)
         {
             float angley = Mathf.Atan2(p2rotation.y, p2rotation.x) * Mathf.Rad2Deg;
             angley = (angley + 360f) % 360f;
-            float angle = Mathf.LerpAngle(ship2.transform.rotation.eulerAngles.z, angley, rotateSpeed * Time.deltaTime);
+            float angle = Mathf.LerpAngle(ship2.transform.rotation.eulerAngles.z, angley, rotateSpeed * Time.fixedDeltaTime);
             ship2.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         }
+
+        //Fire bullets
+        if (Input.GetButton("P1Fire"))
+        {
+            if (bulletPrefab != null)
+            {
+                if (Time.time > fireRate + lastShotp1)
+                {
+                    Instantiate(bulletPrefab, ship1.transform.position + ship1.transform.forward * ship1.coll.radius, ship1.transform.rotation);
+                    lastShotp1 = Time.time;
+                }
+            }
+        }
+        if (Input.GetButton("P2Fire"))
+        {
+            if (bulletPrefab != null)
+            {
+                if (Time.time > fireRate + lastShotp1)
+                {
+                    Instantiate(bulletPrefab, ship2.transform.position + ship2.transform.forward * ship2.coll.radius, ship2.transform.rotation);
+                    lastShotp1 = Time.time;
+                }
+            }
+        }
+    }
+
+    void ControllerSetup()
+    {
+        if (!playerIndexSet || !prevState[0].IsConnected)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                PlayerIndex testPlayerIndex = (PlayerIndex)i;
+                GamePadState testState = GamePad.GetState(testPlayerIndex);
+                if (testState.IsConnected && !playerIndex.Contains(testPlayerIndex))
+                {
+                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+                    playerIndex.Add(testPlayerIndex);
+                    playerIndexSet = true;
+                }
+            }
+        }
+
+        try
+        {
+            prevState[0] = state[0];
+            state.Add(GamePad.GetState(playerIndex[0]));
+            prevState[1] = state[1];
+            state.Add(GamePad.GetState(playerIndex[1]));
+        }
+        catch { }
     }
 }

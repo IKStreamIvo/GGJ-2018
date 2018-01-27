@@ -7,10 +7,12 @@ public class Ship : MonoBehaviour {
     public float speedMultiplier = 1f;
 
     public Rigidbody2D rb;
-    
+    public CircleCollider2D coll;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<CircleCollider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
