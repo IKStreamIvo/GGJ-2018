@@ -16,17 +16,4 @@ public class Ship : MonoBehaviour {
         coll = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Bullet"))
-        {
-            Debug.Log("-health (Bullet)");
-            Destroy(collision.collider.gameObject);
-        } else if (collision.collider.CompareTag("Enemy"))
-        {
-            Debug.Log("-health (Ship)");
-            Destroy(collision.collider.gameObject);
-        }
-    }
 }

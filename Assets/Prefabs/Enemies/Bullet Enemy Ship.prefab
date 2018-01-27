@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 61922658000865568}
   - component: {fileID: 114643232856617616}
   m_Layer: 10
-  m_Name: Bullet
+  m_Name: Bullet Enemy Ship
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,9 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7c172667ab27a4985f1a9ea74740d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2
   ttl: 10
-  damage: 0
+  damage: 100
 --- !u!212 &212327631410015426
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 30304cc369fafe741975bbcfd0c05c20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3b381711c7790746a15c887c36cb499, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

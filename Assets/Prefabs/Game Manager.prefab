@@ -296,9 +296,12 @@ MonoBehaviour:
   - {fileID: 4911931463343436}
   - {fileID: 4053943982512508}
   targetZ: 1
+  enableObstacleSpawn: 1
   obstacleSpawnDelay: 0
   obstacleSpawnInterval: 3
   obstacleVelocity: 1
+  fortSpawnChance: 0.06
+  enableShipSpawn: 1
   shipSpawnDelay: 0
   shipSpawnInterval: 3
   shipVelocity: 3
@@ -313,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23773ea46717f0b4a8e683cbffd71c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamHealth: 1000
   Ship1Prefab: {fileID: 1128038154231968, guid: 84bc1d515b630aa40a3e0580c31d77a4,
     type: 2}
   Ship2Prefab: {fileID: 1030877603747226, guid: f5369513d3870d44381467263c7e003e,
@@ -320,6 +324,8 @@ MonoBehaviour:
   Ship1Spawn: {x: -4, y: -2.75}
   Ship2Spawn: {x: 4, y: -2.75}
   ShipTetherPrefab: {fileID: 1933568364663934, guid: a007f849318c4864d91314e8a9587f7b,
+    type: 2}
+  bulletPrefab: {fileID: 1597388650839762, guid: 6cae278e6e8be5d498d51edf8e02f1d4,
     type: 2}
   moveSpeed: 3
   rotateSpeed: 3
@@ -329,3 +335,4 @@ MonoBehaviour:
   teleportDistance: 5
   fullyChargedValue: 2
   chargeSpeed: 1
+  fireRate: 0.2

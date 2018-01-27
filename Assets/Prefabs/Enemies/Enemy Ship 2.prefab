@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 58374067933020466}
   - component: {fileID: 114088450436855264}
   m_Layer: 13
-  m_Name: Enemy Ship 1
+  m_Name: Enemy Ship 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,13 +81,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504248051368744}
-  m_LocalRotation: {x: -0, y: -0, z: 0.00022481379, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4791409748583954}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.026}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4588612080277502
 Transform:
   m_ObjectHideFlags: 1
@@ -221,7 +221,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 87d587705feb1db40bfd8d804a944422, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d810dc2cbd7e4a46b7551536e85979b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -5,6 +5,10 @@ using XInputDotNetPure;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager instance;
+
+    public int teamHealth = 1000;
+
     public GameObject Ship1Prefab;
     public GameObject Ship2Prefab;
     public Vector2 Ship1Spawn;
@@ -42,6 +46,12 @@ public class GameManager : MonoBehaviour {
     List<PlayerIndex> playerIndex = new List<PlayerIndex>();
     List<GamePadState> state = new List<GamePadState>();
     List<GamePadState> prevState = new List<GamePadState>();
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        else Destroy(this);
+    }
 
     void Start ()
     {
@@ -277,5 +287,14 @@ public class GameManager : MonoBehaviour {
             state.Add(GamePad.GetState(playerIndex[1]));
         }
         catch { }
+    }
+
+    public void applyDamage(int damage)
+    {
+        teamHealth -= damage;
+        if (teamHealth <= 0)
+        {
+            Debug.Log("Team Died!");
+        }
     }
 }
