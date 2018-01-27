@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
-    public int teamHealth = 1000;
+    public float maxTeamHealth = 1000;
+    float currentTeamHealth;
+
+    public RectTransform healthBar;
+    float healthScale;
 
     public GameObject Ship1Prefab;
     public GameObject Ship2Prefab;
@@ -41,7 +46,6 @@ public class GameManager : MonoBehaviour {
     private float minX, minY, maxX, maxY;
     private BoxCollider2D stageBounds;
 
-    bool playerIndexSet = false;
 
     private void Awake()
     {
@@ -61,6 +65,8 @@ public class GameManager : MonoBehaviour {
 
         tether.ship1 = ship1;
         tether.ship2 = ship2;
+        currentTeamHealth = maxTeamHealth;
+        healthScale = healthBar.sizeDelta.x / currentTeamHealth;
     }
 
     void SetGameBounds()
@@ -243,10 +249,15 @@ public class GameManager : MonoBehaviour {
 
     public void applyDamage(int damage)
     {
-        teamHealth -= damage;
-        if (teamHealth <= 0)
+        currentTeamHealth -= damage;
+        if (currentTeamHealth <= 0)
         {
-            Debug.Log("Team Died!");
+            Debug.LogError("Team Died!");
+            Destroy(ship1.gameObject);
+            Destroy(ship2.gameObject);
         }
+        healthBar.sizeDelta = new Vector2(currentTeamHealth * healthScale, healthBar.sizeDelta.y);
+        Debug.Log(healthBar.sizeDelta);
+        healthBar.GetChild(0).GetComponent<Text>().text = (((float)currentTeamHealth/(float)maxTeamHealth) * 100f).ToString() + "%";
     }
 }
