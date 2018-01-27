@@ -18,6 +18,9 @@ public class ShipTether : MonoBehaviour {
 	
 	void Update ()
     {
+        if (ship1 == null || ship2 == null)
+            return;
+
         //Check distance
         Vector2 pos1 = ship1.transform.position;
         Vector2 pos2 = ship2.transform.position;

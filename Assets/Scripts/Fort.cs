@@ -65,7 +65,8 @@ public class Fort : MonoBehaviour {
         if (distanceTarget1 < distanceTarget2)
         {
             targetPlayer = targets[0];
-        } else
+        }
+        else
         {
             targetPlayer = targets[1];
         }
@@ -78,7 +79,8 @@ public class Fort : MonoBehaviour {
         {
             Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
             lastShot = Time.time;
-        } else
+        }
+        else
         {
             Debug.LogError("Fort is trying to fire, but it has no bullet assigned!");
         }

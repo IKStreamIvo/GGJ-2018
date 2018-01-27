@@ -196,6 +196,8 @@ MonoBehaviour:
   Ship2Spawn: {x: 4, y: -2.75}
   ShipTetherPrefab: {fileID: 1933568364663934, guid: a007f849318c4864d91314e8a9587f7b,
     type: 2}
+  bulletPrefab: {fileID: 1597388650839762, guid: 6cae278e6e8be5d498d51edf8e02f1d4,
+    type: 2}
   moveSpeed: 3
   rotateSpeed: 3
   ship1: {fileID: 0}
@@ -204,6 +206,7 @@ MonoBehaviour:
   teleportDistance: 5
   fullyChargedValue: 2
   chargeSpeed: 1
+  fireRate: 0.2
 --- !u!4 &318505163
 Transform:
   m_ObjectHideFlags: 0
