@@ -68,34 +68,51 @@ public class GameManager : MonoBehaviour {
             }
             else if (p1charge >= fullyChargedValue)
             {
-                Debug.Log("Fully released key p1");
+                //Teleport
+                ///get direction
+                float angle = ship1.transform.eulerAngles.z;
+                Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
+                Vector3 targetPos = ship1.transform.position + direction * teleportDistance;
+                float shipSize = ship1.GetComponent<CircleCollider2D>().radius;
+                ///cast that point for collisions
+                Collider2D hit = Physics2D.OverlapCircle(ship1.transform.position + direction, shipSize - .2f);
+                if(hit != null)
+                {
+                    Debug.Log("BEEP");
+                    targetPos = ship1.transform.position + direction * (teleportDistance - shipSize*2f);
+                }
+                /*RaycastHit2D hit = Physics2D.Raycast(ship1.transform.position, direction, teleportDistance + shipSize);
+                if (hit.collider != null)
+                {
+                    Debug.Log("BEEP");
+                    targetPos = ship1.transform.position + direction * (teleportDistance - shipSize);
+                }*/
+                ///teleport
+                ship1.transform.position = targetPos;
+                p1charge = 0f;
             }
             else if (p2charge >= fullyChargedValue)
             {
-
-                Debug.Log("Fully released key p2");
+                //Teleport
+                ///get direction
+                float angle = ship2.transform.eulerAngles.z;
+                Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
+                Vector3 targetPos = ship2.transform.position + direction * teleportDistance;
+                float shipSize = ship2.GetComponent<CircleCollider2D>().radius;
+                ///cast that point for collisions
+                RaycastHit2D hit = Physics2D.Raycast(ship2.transform.position, direction, teleportDistance + shipSize);
+                if (hit.collider != null)
+                {
+                    targetPos = ship2.transform.position + direction * (teleportDistance - shipSize);
+                }
+                ///teleport
+                ship2.transform.position = targetPos;
+                p2charge = 0f;
             }
             else
             {
                 p1charge = 0f;
                 p2charge = 0f;
-            }
-
-            //Check if done
-            if (p1charge >= fullyChargedValue)
-            {
-                //Teleport
-                ///get direction
-                float angle = ship1.transform.eulerAngles.z;
-                Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
-                ///cast that point for collisions
-                //Physics2D.CircleCast();
-                ///teleport
-                ship1.transform.position = ship1.transform.position + direction * teleportDistance;
-            }
-            else if (p2charge >= fullyChargedValue)
-            {
-                //Teleport
             }
         }
         else
