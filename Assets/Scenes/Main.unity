@@ -200,7 +200,7 @@ MonoBehaviour:
   ship2: {fileID: 0}
   tether: {fileID: 0}
   teleportDistance: 5
-  fullyChargedValue: 3
+  fullyChargedValue: 2
   chargeSpeed: 1
 --- !u!4 &318505163
 Transform:

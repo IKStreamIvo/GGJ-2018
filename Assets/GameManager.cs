@@ -78,15 +78,8 @@ public class GameManager : MonoBehaviour {
                 Collider2D hit = Physics2D.OverlapCircle(ship1.transform.position + direction, shipSize - .2f);
                 if(hit != null)
                 {
-                    Debug.Log("BEEP");
                     targetPos = ship1.transform.position + direction * (teleportDistance - shipSize*2f);
                 }
-                /*RaycastHit2D hit = Physics2D.Raycast(ship1.transform.position, direction, teleportDistance + shipSize);
-                if (hit.collider != null)
-                {
-                    Debug.Log("BEEP");
-                    targetPos = ship1.transform.position + direction * (teleportDistance - shipSize);
-                }*/
                 ///teleport
                 ship1.transform.position = targetPos;
                 p1charge = 0f;
@@ -100,10 +93,10 @@ public class GameManager : MonoBehaviour {
                 Vector3 targetPos = ship2.transform.position + direction * teleportDistance;
                 float shipSize = ship2.GetComponent<CircleCollider2D>().radius;
                 ///cast that point for collisions
-                RaycastHit2D hit = Physics2D.Raycast(ship2.transform.position, direction, teleportDistance + shipSize);
-                if (hit.collider != null)
+                Collider2D hit = Physics2D.OverlapCircle(ship1.transform.position + direction, shipSize - .2f);
+                if (hit != null)
                 {
-                    targetPos = ship2.transform.position + direction * (teleportDistance - shipSize);
+                    targetPos = ship1.transform.position + direction * (teleportDistance - shipSize * 2f);
                 }
                 ///teleport
                 ship2.transform.position = targetPos;
