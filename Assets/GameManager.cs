@@ -30,9 +30,12 @@ public class GameManager : MonoBehaviour {
     private float p2charge;
 
     private float minX, minY, maxX, maxY;
+    private BoxCollider2D stageBounds;
 
     void Start ()
     {
+        stageBounds = GetComponent<BoxCollider2D>();
+        
         //Spawn players	
         ship1 = Instantiate(Ship1Prefab, Ship1Spawn, Quaternion.identity).GetComponent<Ship>();
         ship2 = Instantiate(Ship2Prefab, Ship2Spawn, Quaternion.identity).GetComponent<Ship>();
@@ -74,8 +77,9 @@ public class GameManager : MonoBehaviour {
 
             // Update position
             shipTransform.position = pos;
+        }
 
-        }        
+        stageBounds.size = new Vector2(maxX - minX, maxY-minY);
     }
 	
 	void Update ()

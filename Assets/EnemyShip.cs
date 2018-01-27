@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fort : Enemy {
+public class EnemyShip : Enemy {
 
-    public bool aimAtPlayer = true;
+    public bool moveTowardsPlayers = true;
+    public float movementSpeed = 20f;
+
 
     protected override void AcquireTarget()
     {
         List<GameObject> targets = new List<GameObject>();
         for (int i = 0; i < players.Length; i++)
         {
-            if (players[i].transform.position.y <= transform.position.y)
-            {
-                targets.Add(players[i]);
-            }
+            targets.Add(players[i]);
         }
 
         if (targets.Count == 1)
@@ -34,12 +32,14 @@ public class Fort : Enemy {
 
     protected override void FixedUpdate()
     {
-        if (aimAtPlayer && targetPlayer != null)
+        if (moveTowardsPlayers && targetPlayer != null)
         {
             transform.up = targetPlayer.transform.position - transform.position;
+            transform.GetComponent<Rigidbody2D>().velocity = transform.up * movementSpeed;
         }
         base.FixedUpdate();
     }
+
     protected override void AutoFire()
     {
         base.AutoFire();

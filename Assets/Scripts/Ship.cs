@@ -17,7 +17,11 @@ public class Ship : MonoBehaviour {
     {
         if (collision.collider.CompareTag("Bullet"))
         {
-            Debug.Log("-health");
+            Debug.Log("-health (Bullet)");
+            Destroy(collision.collider.gameObject);
+        } else if (collision.collider.CompareTag("Enemy"))
+        {
+            Debug.Log("-health (Ship)");
             Destroy(collision.collider.gameObject);
         }
     }
