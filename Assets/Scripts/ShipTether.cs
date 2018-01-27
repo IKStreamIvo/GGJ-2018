@@ -9,7 +9,7 @@ public class ShipTether : MonoBehaviour {
     public Ship ship1;
     public Ship ship2;
 
-    private LineRenderer line;
+    public LineRenderer line;
 
 	void Start ()
     {
@@ -22,11 +22,7 @@ public class ShipTether : MonoBehaviour {
         Vector2 pos1 = ship1.transform.position;
         Vector2 pos2 = ship2.transform.position;
 
-        //Update line positions
-        line.SetPosition(0, pos1);
-        line.SetPosition(1, pos2);
-        line.startWidth = 1f - (Vector2.Distance(pos1, pos2) / distanceThreshold);
-        /*if(Vector2.Distance(pos1, pos2) <= distanceThreshold)
+        if(Vector2.Distance(pos1, pos2) <= distanceThreshold)
         {
             //Update line positions
             line.SetPosition(0, pos1);
@@ -37,7 +33,7 @@ public class ShipTether : MonoBehaviour {
         else
         {
             line.enabled = false;
-        }*/
+        }
 
     }
 }
