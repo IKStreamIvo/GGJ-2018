@@ -8,6 +8,7 @@ TagManager:
   - Fort Spawn
   - Bullet
   - Player Bullet
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Obstacle
+    uniqueID: 3305283373
+    locked: 0
+  - name: Ship
+    uniqueID: 3910886845
+    locked: 0
+  - name: Fort
+    uniqueID: 3910765391
+    locked: 0
+  - name: Player
+    uniqueID: 458932259
     locked: 0

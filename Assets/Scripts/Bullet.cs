@@ -12,6 +12,9 @@ public class Bullet : MonoBehaviour {
         {
             GameManager.instance.applyDamage(damage);
             Destroy(transform.gameObject);
+        } else if (collision.collider.CompareTag("Obstacle"))
+        {
+            Destroy(transform.gameObject);
         }
     }
 }

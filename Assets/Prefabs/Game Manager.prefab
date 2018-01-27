@@ -287,6 +287,7 @@ MonoBehaviour:
   - {fileID: 1150487849289662, guid: 2be0e4f2ee5ac294482b37ed762c26fa, type: 2}
   spawnableShips:
   - {fileID: 1485471752172072, guid: 2c4caab8b66e17a48b1d4196f40a09f7, type: 2}
+  - {fileID: 1485471752172072, guid: 7eba7b180213fb242a57a60283a2a5d9, type: 2}
   spawnableForts:
   - {fileID: 1554564249955094, guid: 5c6af918cbbb5a846b02259d289a66f4, type: 2}
   obstacleSpawnPoints:

@@ -143,7 +143,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.35
 --- !u!114 &114784784164106682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,13 +157,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   fireRate: 10
+  bulletSpeed: 3
   disableAutoFire: 0
   bullet: {fileID: 1884456372365390, guid: e6701fd84f14b3347b1d125dc761fad7, type: 2}
   bulletSpawns:
   - {fileID: 4300835910100172}
   - {fileID: 4435374873000930}
-  alternateFire: 0
+  alternateFire: 1
   collisionDamage: 100
+  damage: 50
   aimAtPlayer: 1
 --- !u!212 &212254810146030294
 SpriteRenderer:
@@ -196,8 +198,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -384201905
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 76066e71dc6e72c4fbe4bf37cad7ed69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

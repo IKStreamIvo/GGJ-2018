@@ -78,28 +78,30 @@ public class GameManager : MonoBehaviour {
         maxX = topCorner.x;
         maxY = topCorner.y;
 
-        Transform shipTransform = ship1.transform;
-        
-        for (int i = 0; i < 2; i++)
+        if (ship1 != null)
         {
-            if (i == 1)
+            Transform shipTransform = ship1.transform;
+
+            for (int i = 0; i < 2; i++)
             {
-                shipTransform = ship2.transform;
+                if (i == 1)
+                {
+                    shipTransform = ship2.transform;
+                }
+
+                Vector3 pos = shipTransform.position;
+                // Horizontal contraint
+                if (pos.x < minX) pos.x = minX;
+                if (pos.x > maxX) pos.x = maxX;
+
+                // vertical contraint-
+                if (pos.y < minY) pos.y = minY;
+                if (pos.y > maxY) pos.y = maxY;
+
+                // Update position
+                shipTransform.position = pos;
             }
-
-            Vector3 pos = shipTransform.position;
-            // Horizontal contraint
-            if (pos.x < minX) pos.x = minX;
-            if (pos.x > maxX) pos.x = maxX;
-
-            // vertical contraint-
-            if (pos.y < minY) pos.y = minY;
-            if (pos.y > maxY) pos.y = maxY;
-
-            // Update position
-            shipTransform.position = pos;
         }
-
         stageBounds.size = new Vector2(maxX - minX, maxY - minY);
     }
 	
