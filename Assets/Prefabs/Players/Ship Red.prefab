@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4221699633869706}
   - component: {fileID: 58749754586959468}
   - component: {fileID: 50707986950219734}
-  - component: {fileID: 114993613685168192}
   - component: {fileID: 95046776561220152}
+  - component: {fileID: 114408466159005400}
   m_Layer: 11
   m_Name: Ship Red
   m_TagString: Player
@@ -125,7 +125,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114993613685168192
+--- !u!114 &114408466159005400
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -133,9 +133,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1030877603747226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 051de28274fff1a4c88e87824d1f9741, type: 3}
+  m_Script: {fileID: 11500000, guid: be56e719cf2bd9d419f6c0f26852e5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletPrefab: {fileID: 1439671959754966, guid: c506e32cca7c97b419ef9cc587030b0d,
+    type: 2}
+  damage: 150
+  shootingSpeed: 0.8333333
+  moveSpeed: 3
+  damageMultiplier: 1
+  shootingSpeedMultiplier: 1
   speedMultiplier: 1
   rb: {fileID: 0}
   coll: {fileID: 0}

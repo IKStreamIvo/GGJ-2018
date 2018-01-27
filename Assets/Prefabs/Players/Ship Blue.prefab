@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4771899974209364}
   - component: {fileID: 50025535799635960}
-  - component: {fileID: 114367553713236398}
   - component: {fileID: 58957537119003532}
   - component: {fileID: 95500920097652972}
+  - component: {fileID: 114089531080047542}
   m_Layer: 11
   m_Name: Ship Blue
   m_TagString: Player
@@ -125,7 +125,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114367553713236398
+--- !u!114 &114089531080047542
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -133,9 +133,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1128038154231968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 051de28274fff1a4c88e87824d1f9741, type: 3}
+  m_Script: {fileID: 11500000, guid: bac80114a6339f14a8b2d38ad6e4ccaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletPrefab: {fileID: 1884456372365390, guid: ebc991831df42b04b8706ef51b05c061,
+    type: 2}
+  damage: 150
+  shootingSpeed: 0.8333333
+  moveSpeed: 3
+  damageMultiplier: 1
+  shootingSpeedMultiplier: 1
   speedMultiplier: 1
   rb: {fileID: 0}
   coll: {fileID: 0}
