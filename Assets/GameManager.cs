@@ -53,8 +53,6 @@ public class GameManager : MonoBehaviour {
 
         tether.ship1 = ship1;
         tether.ship2 = ship2;
-
-        //Get Joysticks
     }
 
     void SetGameBounds()
@@ -81,13 +79,12 @@ public class GameManager : MonoBehaviour {
             if (pos.x < minX) pos.x = minX;
             if (pos.x > maxX) pos.x = maxX;
 
-            // vertical contraint
+            // vertical contraint-
             if (pos.y < minY) pos.y = minY;
             if (pos.y > maxY) pos.y = maxY;
 
             // Update position
             shipTransform.position = pos;
-
         }        
     }
 	
@@ -105,11 +102,15 @@ public class GameManager : MonoBehaviour {
             {
                 p2charge = 0f;
                 p1charge += chargeSpeed * Time.deltaTime;
+                ship1.animator.SetBool("IsCharging", true);
+                ship2.animator.SetBool("IsCharging", false);
             }
             else if (p2tp == 1)
             {
                 p1charge = 0f;
                 p2charge += chargeSpeed * Time.deltaTime;
+                ship2.animator.SetBool("IsCharging", true);
+                ship1.animator.SetBool("IsCharging", false);
             }
             else if (p1charge >= fullyChargedValue)
             {
@@ -128,6 +129,8 @@ public class GameManager : MonoBehaviour {
                 ///teleport
                 ship1.transform.position = targetPos;
                 p1charge = 0f;
+                ship1.animator.SetBool("IsCharging", false);
+                ship1.animator.SetBool("FullyCharged", false);
             }
             else if (p2charge >= fullyChargedValue)
             {
@@ -146,15 +149,30 @@ public class GameManager : MonoBehaviour {
                 ///teleport
                 ship2.transform.position = targetPos;
                 p2charge = 0f;
+                ship2.animator.SetBool("IsCharging", false);
+                ship2.animator.SetBool("FullyCharged", false);
             }
             else
             {
+                ship1.animator.SetBool("IsCharging", false);
+                ship2.animator.SetBool("IsCharging", false);
                 p1charge = 0f;
                 p2charge = 0f;
+            }
+
+            if (p1charge >= fullyChargedValue)
+            {
+                ship1.animator.SetBool("FullyCharged", true);
+            }
+            else if (p2charge >= fullyChargedValue)
+            {
+                ship2.animator.SetBool("FullyCharged", true);
             }
         }
         else
         {
+            ship1.animator.SetBool("IsCharging", false);
+            ship2.animator.SetBool("IsCharging", false);
             p1charge = 0f;
             p2charge = 0f;
         }
@@ -164,7 +182,7 @@ public class GameManager : MonoBehaviour {
     {
         //ControllerSetup();
 
-        p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
+        p1movement = new Vector2(Input.GetAxisRaw("JoyInputHor"), Input.GetAxisRaw("P1MovVer"));
         /*if(p1movement == new Vector2(0f, 0f))
         {
             try

@@ -8,11 +8,13 @@ public class Ship : MonoBehaviour {
 
     public Rigidbody2D rb;
     public CircleCollider2D coll;
+    public Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<CircleCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

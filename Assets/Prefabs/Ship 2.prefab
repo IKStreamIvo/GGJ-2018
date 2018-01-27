@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 58749754586959468}
   - component: {fileID: 50707986950219734}
   - component: {fileID: 114993613685168192}
+  - component: {fileID: 95046776561220152}
   m_Layer: 11
   m_Name: Ship 2
   m_TagString: Player
@@ -107,6 +108,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.8
+--- !u!95 &95046776561220152
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030877603747226}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 859d5e966d313c542a7eda68022390c4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114993613685168192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,6 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMultiplier: 1
   rb: {fileID: 0}
+  coll: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!212 &212906328856978912
 SpriteRenderer:
   m_ObjectHideFlags: 1
