@@ -94,16 +94,25 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    protected virtual void ApplyDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(transform.gameObject);
+        }
+    }
+
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             GameManager.instance.applyDamage(collisionDamage);
             Destroy(transform.gameObject);
-        }
-        else if (collision.gameObject.tag == "Bullet" && collision.gameObject.layer == LayerMask.GetMask("Player Bullets"))
+        } else if (collision.transform.CompareTag("Player Bullet"))
         {
-            Destroy(transform.gameObject);
+            ApplyDamage(collision.transform.GetComponent<Bullet>().damage);
+            Destroy(collision.transform.gameObject);
         }
     }
 }

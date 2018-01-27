@@ -55,6 +55,7 @@ MonoBehaviour:
   distanceThreshold: 10
   ship1: {fileID: 0}
   ship2: {fileID: 0}
+  line: {fileID: 0}
 --- !u!120 &120865522941327914
 LineRenderer:
   m_ObjectHideFlags: 1

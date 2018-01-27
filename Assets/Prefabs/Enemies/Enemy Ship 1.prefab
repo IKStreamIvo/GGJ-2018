@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 200
-  fireRate: 40
+  fireRate: 20
   disableAutoFire: 0
   bullet: {fileID: 1884456372365390, guid: 1dbea9a15cc1ddd4c8d490f461fe186e, type: 2}
   bulletSpawns:
