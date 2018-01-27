@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour {
         rb.velocity = transform.up * speed;
 	}
 	
-    void OnCollisionEnter(Collision collision)
+    /*void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Player hit!");
 
@@ -21,5 +21,5 @@ public class Bullet : MonoBehaviour {
         {
             Destroy(transform.gameObject);
         }
-    }
+    }*/
 }

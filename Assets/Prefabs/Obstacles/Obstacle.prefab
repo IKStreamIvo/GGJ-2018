@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4979989724012330}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Fort Spawn (2)
   m_TagString: Fort Spawn
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4004071631624876}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Fort Spawn
   m_TagString: Fort Spawn
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4874860508798520}
   - component: {fileID: 61063606500498898}
   - component: {fileID: 50335830112012072}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4684217673748298}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Fort Spawn
   m_TagString: Fort Spawn
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4117019462381832}
   - component: {fileID: 212033689771751260}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4627374408960260}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Fort Spawn (1)
   m_TagString: Fort Spawn
   m_Icon: {fileID: 0}

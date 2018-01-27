@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 50025535799635960}
   - component: {fileID: 114367553713236398}
   - component: {fileID: 58957537119003532}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ship
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4737471103025210}
   - component: {fileID: 212589254171154422}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,9 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051de28274fff1a4c88e87824d1f9741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 1
-  moveSpeed: 3
-  rotateSpeed: 3
+  speedMultiplier: 1
   rb: {fileID: 0}
 --- !u!212 &212589254171154422
 SpriteRenderer:

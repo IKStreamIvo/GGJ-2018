@@ -12,4 +12,13 @@ public class Ship : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Bullet"))
+        {
+            Debug.Log("-health");
+            Destroy(collision.collider.gameObject);
+        }
+    }
 }

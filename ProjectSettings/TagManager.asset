@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Fort Spawn
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - 
   - Obstacles
   - Forts
-  - 
-  - 
+  - Bullets
+  - Player
   - 
   - 
   - 
