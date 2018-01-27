@@ -257,7 +257,6 @@ public class GameManager : MonoBehaviour {
             Destroy(ship2.gameObject);
         }
         healthBar.sizeDelta = new Vector2(currentTeamHealth * healthScale, healthBar.sizeDelta.y);
-        Debug.Log(healthBar.sizeDelta);
         healthBar.GetChild(0).GetComponent<Text>().text = (((float)currentTeamHealth/(float)maxTeamHealth) * 100f).ToString() + "%";
     }
 }

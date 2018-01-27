@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 61966113410174036}
   - component: {fileID: 114891188791065116}
   m_Layer: 12
-  m_Name: Player Bullet
+  m_Name: Player Bullet Red
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  ttl: 10
   damage: 100
 --- !u!212 &212202938443640078
 SpriteRenderer:

@@ -101,5 +101,9 @@ public class Enemy : MonoBehaviour {
             GameManager.instance.applyDamage(collisionDamage);
             Destroy(transform.gameObject);
         }
+        else if (collision.gameObject.tag == "Bullet" && collision.gameObject.layer == LayerMask.GetMask("Player Bullets"))
+        {
+            Destroy(transform.gameObject);
+        }
     }
 }
