@@ -510,11 +510,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 58092390338154316, guid: 5c6af918cbbb5a846b02259d289a66f4,
-        type: 2}
-      propertyPath: m_Radius
-      value: 0.35
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c6af918cbbb5a846b02259d289a66f4, type: 2}
   m_IsPrefabParent: 0
@@ -845,7 +840,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -2049600569
   m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1816769767
