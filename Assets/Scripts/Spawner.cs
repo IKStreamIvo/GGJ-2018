@@ -5,27 +5,35 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     public List<GameObject> spawnableObstacles;
+    public List<GameObject> spawnableShips;
     public List<GameObject> spawnableForts;
 
-    public List<Vector2> spawnPoints;
-    public int targetLayer = 1;
+    public List<Transform> obstacleSpawnPoints;
+    public List<Transform> shipSpawnPoints;
 
+    public int targetZ = 1;
 
-    public float spawnDelay = 0f;
-    public float spawnInterval = 3f;
-
+    public bool enableObstacleSpawn = true;
+    public float obstacleSpawnDelay = 0f;
+    public float obstacleSpawnInterval = 3f;
     public float obstacleVelocity = 3f;
 
-	// Use this for initialization
-	void Start () {
-        InvokeRepeating("SpawnObstacles", spawnDelay, spawnInterval);
-	}
+    public bool enableShipSpawn = true;
+    public float shipSpawnDelay = 0f;
+    public float shipSpawnInterval = 3f;
+    public float shipVelocity = 3f;
+    // Use this for initialization
+    void Start () {
+        InvokeRepeating("SpawnObstacles", obstacleSpawnDelay, obstacleSpawnInterval);
+        InvokeRepeating("SpawnShips", shipSpawnDelay, shipSpawnInterval);
+    }
 
     void SpawnObstacles()
     {
-        for (int i = 0; i < spawnPoints.Count; i++)
+        if (!enableObstacleSpawn) return;
+        for (int i = 0; i < obstacleSpawnPoints.Count; i++)
         {
-            Vector2 spawnPoint = spawnPoints[i];
+            Vector2 spawnPoint = obstacleSpawnPoints[i].position;
             GameObject obstacle = spawnableObstacles[Random.Range(0, spawnableObstacles.Count)];
             obstacle = Instantiate(obstacle, spawnPoint, Quaternion.Euler(0,0,0), transform);
             obstacle.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -obstacleVelocity);
@@ -34,9 +42,25 @@ public class Spawner : MonoBehaviour {
         }
     }
 
+    void SpawnShips()
+    {
+        if (!enableShipSpawn) return;
+        for (int i = 0; i < shipSpawnPoints.Count; i++)
+        {
+            Vector2 spawnPoint = shipSpawnPoints[i].position;
+            GameObject ship = spawnableShips[Random.Range(0, spawnableShips.Count)];
+            ship = Instantiate(ship, spawnPoint, Quaternion.Euler(Vector2.up), transform);
+        }
+    }
+
     // Delete gameObjects that leave the screen
     void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.transform.tag == "Player")
+        {
+            Debug.Log("Player outside of destroy zone!");
+            return;
+        }
         Destroy(collision.gameObject);
     }
 
