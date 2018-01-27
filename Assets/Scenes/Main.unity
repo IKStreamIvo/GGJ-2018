@@ -726,6 +726,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: ShipPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4789951921632388, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -783,6 +788,54 @@ Prefab:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1788075837}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: ShipPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1128038154231968, guid: 84bc1d515b630aa40a3e0580c31d77a4,
+        type: 2}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: ShipPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 1030877603747226, guid: d61e6a8b66ae93b4e8825b35385d7e07,
+        type: 2}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: ShipPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 1030877603747226, guid: f5369513d3870d44381467263c7e003e,
+        type: 2}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: ShipPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 1030877603747226, guid: 39b995e81df764c4aade45b761c2d55f,
+        type: 2}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: ShipPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1128038154231968, guid: 84bc1d515b630aa40a3e0580c31d77a4,
+        type: 2}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: ShipPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1030877603747226, guid: d61e6a8b66ae93b4e8825b35385d7e07,
+        type: 2}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: ShipPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1030877603747226, guid: f5369513d3870d44381467263c7e003e,
+        type: 2}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: ShipPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 1030877603747226, guid: 39b995e81df764c4aade45b761c2d55f,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
   m_IsPrefabParent: 0

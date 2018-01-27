@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviour {
     public RectTransform healthBar;
     float healthScale;
 
-    public GameObject Ship1Prefab;
-    public GameObject Ship2Prefab;
+    public GameObject[] ShipPrefabs;
     public Vector2 Ship1Spawn;
     public Vector2 Ship2Spawn;
     public GameObject ShipTetherPrefab;
@@ -57,8 +56,8 @@ public class GameManager : MonoBehaviour {
     {
         stageBounds = GetComponent<BoxCollider2D>();
         //Spawn players	
-        ship1 = Instantiate(Ship1Prefab, Ship1Spawn, Quaternion.identity).GetComponent<Ship>();
-        ship2 = Instantiate(Ship2Prefab, Ship2Spawn, Quaternion.identity).GetComponent<Ship>();
+        ship1 = Instantiate(ShipPrefabs[SelectedShip.Ship1], Ship1Spawn, Quaternion.identity).GetComponent<Ship>();
+        ship2 = Instantiate(ShipPrefabs[SelectedShip.Ship2], Ship2Spawn, Quaternion.identity).GetComponent<Ship>();
 
         //Spawn tether
         tether = Instantiate(ShipTetherPrefab).GetComponent<ShipTether>();

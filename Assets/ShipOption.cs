@@ -10,7 +10,7 @@ public class ShipOption : MonoBehaviour {
     public SpriteRenderer image;
     public new Animation animation;
 
-    private void Start()
+    private void Awake()
     {
         image = GetComponent<SpriteRenderer>();
         animation = GetComponent<Animation>();
