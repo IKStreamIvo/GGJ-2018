@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
-    public float maxTeamHealth = 1000;
+    public float maxTeamHealth = 1000f;
     float currentTeamHealth;
 
     public RectTransform healthBar;
@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour {
     public float fullyChargedValue = 3f;
     public float chargeSpeed = 1f;
 
-    private float p1charge;
-    private float p2charge;
+    private float p1charge = 0f;
+    private float p2charge = 0f;
 
     public float fireRate = (50f / 60f);
     float lastShotp1 = 0f;
@@ -106,14 +106,19 @@ public class GameManager : MonoBehaviour {
 	void Update ()
     {
         SetGameBounds();
-        
+
+        if(tether == null)
+        {
+            return;
+        }
+
         //Teleport
         if (tether.line.enabled)
         {
             ///Get input
             int p1tp = Mathf.CeilToInt(Input.GetAxis("P1Teleport"));
             int p2tp = Mathf.CeilToInt(Input.GetAxis("P2Teleport"));
-            if (p1tp == 1)
+            if (p1tp == 1 && p2charge == 0f)
             {
                 p2charge = 0f;
                 p1charge += chargeSpeed * Time.deltaTime;
@@ -137,9 +142,9 @@ public class GameManager : MonoBehaviour {
                 float shipSize = ship1.coll.radius;
                 ///cast that point for collisions
                 Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
-                if(hit != null)
+                if (hit != null)
                 {
-                    targetPos = ship1.transform.position + direction * (Mathf.Abs(hit.Distance(ship1.coll).distance/2f));
+                    targetPos = ship1.transform.position + direction * (Mathf.Abs(hit.Distance(ship1.coll).distance / 2f));
                 }
                 ///teleport
                 ship1.transform.position = targetPos;

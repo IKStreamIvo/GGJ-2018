@@ -7,7 +7,6 @@ public class EnemyShip : Enemy {
     public bool moveTowardsPlayers = true;
     public float movementSpeed = 2f;
 
-
     protected override void AcquireTarget()
     {
         List<GameObject> targets = new List<GameObject>();

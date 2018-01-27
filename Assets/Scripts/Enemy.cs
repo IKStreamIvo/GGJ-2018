@@ -5,8 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     public float health = 500f;
-    public float fireRate = 100f;
-
+    public float fireRate = 75f;
+    public float bulletSpeed = 3f;
+    
     //public float rotationSpeed = 5f;
 
     public bool disableAutoFire = false;
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour {
     protected float lastShot = 0f;
     protected int lastSpawn = 0;
     protected Rigidbody2D rb;
+    public float damage = 50f;
 
     protected void Start()
     {
@@ -75,15 +77,20 @@ public class Enemy : MonoBehaviour {
                     for (int i = 0; i < bulletSpawns.Count; i++)
                     {
                         Transform bulletSpawn = bulletSpawns[i];
-                        Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                        GameObject bulletGO = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                        bulletGO.GetComponent<Bullet>().damage = damage;
+                        Rigidbody2D rbb = bulletGO.GetComponent<Rigidbody2D>();
+                        rbb.velocity = bulletGO.transform.up * bulletSpeed;
                         lastShot = Time.time;
                     }
                 } else
                 {
                     lastSpawn = (lastSpawn + 1) % bulletSpawns.Count;
                     Transform bulletSpawn = bulletSpawns[lastSpawn];
-                    Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-                    
+                    GameObject bulletGO = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                    bulletGO.GetComponent<Bullet>().damage = damage;
+                    Rigidbody2D rbb = bulletGO.GetComponent<Rigidbody2D>();
+                    rbb.velocity = bulletGO.transform.up * bulletSpeed;
                 }
                 lastShot = Time.time;
             }
@@ -96,14 +103,11 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void ApplyDamage(float damage)
     {
+        AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage2);
         health -= damage;
         if (health <= 0)
         {
-            int rnd = Random.Range(0, 1);
-            if (rnd == 0)
-                AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
-            else 
-                AudioManager.instance.PlaySound(AudioManager.Sound.EnemyLaser);
+            AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
 
             Destroy(transform.gameObject);
         }

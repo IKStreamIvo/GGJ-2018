@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731ebd94a9cb42e48afb6919bf4d3bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceThreshold: 10
+  distanceThreshold: 7
   ship1: {fileID: 0}
   ship2: {fileID: 0}
   line: {fileID: 0}

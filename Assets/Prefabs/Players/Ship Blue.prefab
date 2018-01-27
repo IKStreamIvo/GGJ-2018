@@ -107,7 +107,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.4
 --- !u!95 &95500920097652972
 Animator:
   serializedVersion: 3
@@ -141,6 +141,7 @@ MonoBehaviour:
   damage: 150
   shootingSpeed: 0.8333333
   moveSpeed: 3
+  bulletSpeed: 5
   damageMultiplier: 1
   shootingSpeedMultiplier: 1
   speedMultiplier: 1
