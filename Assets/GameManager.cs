@@ -81,13 +81,7 @@ public class GameManager : MonoBehaviour {
 	void Update ()
     {
         SetGameBounds();
-
-        p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
-        p2movement = new Vector2(Input.GetAxisRaw("P2MovHor"), Input.GetAxisRaw("P2MovVer"));
-
-        p1rotation = new Vector2(Input.GetAxisRaw("P1RotHor"), Input.GetAxisRaw("P1RotVer"));
-        p2rotation = new Vector2(Input.GetAxisRaw("P2RotHor"), Input.GetAxisRaw("P2RotVer"));
-
+        
         //Teleport
         if (tether.line.enabled)
         {
@@ -111,12 +105,12 @@ public class GameManager : MonoBehaviour {
                 float angle = ship1.transform.eulerAngles.z;
                 Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
                 Vector3 targetPos = ship1.transform.position + direction * teleportDistance;
-                float shipSize = ship1.GetComponent<CircleCollider2D>().radius;
+                float shipSize = ship1.coll.radius;
                 ///cast that point for collisions
-                Collider2D hit = Physics2D.OverlapCircle(ship1.transform.position + direction, shipSize - .2f);
+                Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
                 if(hit != null)
                 {
-                    targetPos = ship1.transform.position + direction * (teleportDistance - shipSize*2f);
+                    targetPos = ship1.transform.position + direction * (Mathf.Abs(hit.Distance(ship1.coll).distance/2f));
                 }
                 ///teleport
                 ship1.transform.position = targetPos;
@@ -129,12 +123,12 @@ public class GameManager : MonoBehaviour {
                 float angle = ship2.transform.eulerAngles.z;
                 Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
                 Vector3 targetPos = ship2.transform.position + direction * teleportDistance;
-                float shipSize = ship2.GetComponent<CircleCollider2D>().radius;
+                float shipSize = ship2.coll.radius;
                 ///cast that point for collisions
-                Collider2D hit = Physics2D.OverlapCircle(ship1.transform.position + direction, shipSize - .2f);
+                Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
                 if (hit != null)
                 {
-                    targetPos = ship2.transform.position + direction * (teleportDistance - shipSize * 2f);
+                    targetPos = ship2.transform.position + direction * (Mathf.Abs(hit.Distance(ship2.coll).distance / 2f));
                 }
                 ///teleport
                 ship2.transform.position = targetPos;
@@ -151,11 +145,16 @@ public class GameManager : MonoBehaviour {
             p1charge = 0f;
             p2charge = 0f;
         }
-        
     }
 
     private void FixedUpdate()
     {
+        p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
+        p2movement = new Vector2(Input.GetAxisRaw("P2MovHor"), Input.GetAxisRaw("P2MovVer"));
+
+        p1rotation = new Vector2(Input.GetAxisRaw("P1RotHor"), Input.GetAxisRaw("P1RotVer"));
+        p2rotation = new Vector2(Input.GetAxisRaw("P2RotHor"), Input.GetAxisRaw("P2RotVer"));
+
         ship1.rb.velocity = p1movement.normalized * moveSpeed;
         ship2.rb.velocity = p2movement.normalized * moveSpeed;
 
@@ -163,14 +162,14 @@ public class GameManager : MonoBehaviour {
         {
             float angley = Mathf.Atan2(p1rotation.y, p1rotation.x) * Mathf.Rad2Deg;
             angley = (angley + 360f) % 360f;
-            float angle = Mathf.LerpAngle(ship1.transform.rotation.eulerAngles.z, angley, rotateSpeed * Time.deltaTime);
+            float angle = Mathf.LerpAngle(ship1.transform.rotation.eulerAngles.z, angley, rotateSpeed * Time.fixedDeltaTime);
             ship1.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         }
         if (p2rotation.x != 0f || p2rotation.y != 0f)
         {
             float angley = Mathf.Atan2(p2rotation.y, p2rotation.x) * Mathf.Rad2Deg;
             angley = (angley + 360f) % 360f;
-            float angle = Mathf.LerpAngle(ship2.transform.rotation.eulerAngles.z, angley, rotateSpeed * Time.deltaTime);
+            float angle = Mathf.LerpAngle(ship2.transform.rotation.eulerAngles.z, angley, rotateSpeed * Time.fixedDeltaTime);
             ship2.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         }
     }
