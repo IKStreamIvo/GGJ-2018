@@ -42,9 +42,6 @@ public class GameManager : MonoBehaviour {
     private BoxCollider2D stageBounds;
 
     bool playerIndexSet = false;
-    List<PlayerIndex> playerIndex = new List<PlayerIndex>();
-    List<GamePadState> state = new List<GamePadState>();
-    List<GamePadState> prevState = new List<GamePadState>();
 
     private void Awake()
     {
@@ -242,33 +239,6 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-    }
-
-    void ControllerSetup()
-    {
-        if (!playerIndexSet || !prevState[0].IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected && !playerIndex.Contains(testPlayerIndex))
-                {
-                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
-                    playerIndex.Add(testPlayerIndex);
-                    playerIndexSet = true;
-                }
-            }
-        }
-
-        try
-        {
-            prevState[0] = state[0];
-            state.Add(GamePad.GetState(playerIndex[0]));
-            prevState[1] = state[1];
-            state.Add(GamePad.GetState(playerIndex[1]));
-        }
-        catch { }
     }
 
     public void applyDamage(int damage)
