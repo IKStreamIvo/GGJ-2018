@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetButtonDown("P1Select"))
+        if (Input.anyKeyDown)
             StartGame();
     }
 }

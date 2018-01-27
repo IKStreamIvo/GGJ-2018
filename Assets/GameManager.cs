@@ -104,7 +104,12 @@ public class GameManager : MonoBehaviour {
         }
         stageBounds.size = new Vector2(maxX - minX, maxY - minY);
     }
-	
+
+    bool p1tpDown;
+    bool p1fullyCharged;
+    bool p2tpDown;
+    bool p2fullyCharged;
+
 	void Update ()
     {
         SetGameBounds();
@@ -117,78 +122,95 @@ public class GameManager : MonoBehaviour {
         //Teleport
         if (tether.line.enabled)
         {
-            ///Get input
-            int p1tp = Mathf.CeilToInt(Input.GetAxis("P1Teleport"));
-            int p2tp = Mathf.CeilToInt(Input.GetAxis("P2Teleport"));
-            if (p1tp == 1 && p2charge == 0f)
+            float p1tp = Input.GetAxisRaw("P1Teleport");
+            float p2tp = Input.GetAxisRaw("P2Teleport");
+
+            //GetButton
+            ///key down and was previously pressed?
+            if (p1tp == 1 && p1tpDown)
             {
-                p2charge = 0f;
+                Debug.Log(p1charge + "/" + fullyChargedValue);
                 p1charge += chargeSpeed * Time.deltaTime;
-                ship1.animator.SetBool("IsCharging", true);
-                ship2.animator.SetBool("IsCharging", false);
-            }
-            else if (p2tp == 1)
-            {
-                p1charge = 0f;
-                p2charge += chargeSpeed * Time.deltaTime;
-                ship2.animator.SetBool("IsCharging", true);
-                ship1.animator.SetBool("IsCharging", false);
-            }
-            else if (p1charge >= fullyChargedValue)
-            {
-                //Teleport
-                ///get direction
-                float angle = ship1.transform.eulerAngles.z;
-                Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
-                Vector3 targetPos = ship1.transform.position + direction * teleportDistance;
-                float shipSize = ship1.coll.radius;
-                ///cast that point for collisions
-                Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
-                if (hit != null)
+                if (p1charge >= fullyChargedValue)
                 {
-                    targetPos = ship1.transform.position + direction * (Mathf.Abs(hit.Distance(ship1.coll).distance / 2f));
+                    Debug.Log("Fully Charged");
+                    p1fullyCharged = true;
+                    ship1.animator.SetBool("FullyCharged", true);
                 }
-                ///teleport
-                ship1.transform.position = targetPos;
+            }
+            if (p2tp == 1 && p2tpDown)
+            {
+                p2charge += chargeSpeed * Time.deltaTime;
+                if (p2charge >= fullyChargedValue)
+                {
+                    p2fullyCharged = true;
+                    ship2.animator.SetBool("FullyCharged", true);
+                }
+            }
+
+            //GetButtonDown
+            if (p1tp == 1 && !p2tpDown) //key down + other not charging
+            {
+                p1tpDown = true;
+                ship1.animator.SetBool("IsCharging", true);
+            }
+            if (p2tp == 1 && !p1tpDown) //key down + other not charging
+            {
+                p2tpDown = true;
+                ship2.animator.SetBool("IsCharging", true);
+            }
+
+            //GetButtonUp
+            if (p1tp == 0 && p1tpDown)
+            {
+                if (p1fullyCharged)
+                {
+                    //Teleport
+                    ///get direction
+                    float angle = ship1.transform.eulerAngles.z;
+                    Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
+                    Vector3 targetPos = ship1.transform.position + direction * teleportDistance;
+                    float shipSize = ship1.coll.radius;
+                    ///cast that point for collisions
+                    Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
+                    if (hit != null)
+                    {
+                        targetPos = ship1.transform.position + direction * (Mathf.Abs(hit.Distance(ship1.coll).distance / 2f));
+                    }
+                    ///teleport
+                    ship1.transform.position = targetPos;
+                }
+                p1tpDown = false;
+                p1fullyCharged = false;
                 p1charge = 0f;
                 ship1.animator.SetBool("IsCharging", false);
                 ship1.animator.SetBool("FullyCharged", false);
+
             }
-            else if (p2charge >= fullyChargedValue)
+            if (p2tp == 0 && p2tpDown)
             {
-                //Teleport
-                ///get direction
-                float angle = ship2.transform.eulerAngles.z;
-                Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
-                Vector3 targetPos = ship2.transform.position + direction * teleportDistance;
-                float shipSize = ship2.coll.radius;
-                ///cast that point for collisions
-                Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
-                if (hit != null)
+                if (p2fullyCharged)
                 {
-                    targetPos = ship2.transform.position + direction * (Mathf.Abs(hit.Distance(ship2.coll).distance / 2f));
+                    //Teleport
+                    ///get direction
+                    float angle = ship2.transform.eulerAngles.z;
+                    Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
+                    Vector3 targetPos = ship2.transform.position + direction * teleportDistance;
+                    float shipSize = ship2.coll.radius;
+                    ///cast that point for collisions
+                    Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
+                    if (hit != null)
+                    {
+                        targetPos = ship2.transform.position + direction * (Mathf.Abs(hit.Distance(ship2.coll).distance / 2f));
+                    }
+                    ///teleport
+                    ship2.transform.position = targetPos;
                 }
-                ///teleport
-                ship2.transform.position = targetPos;
+                p2tpDown = false;
+                p2fullyCharged = false;
                 p2charge = 0f;
                 ship2.animator.SetBool("IsCharging", false);
                 ship2.animator.SetBool("FullyCharged", false);
-            }
-            else
-            {
-                ship1.animator.SetBool("IsCharging", false);
-                ship2.animator.SetBool("IsCharging", false);
-                p1charge = 0f;
-                p2charge = 0f;
-            }
-
-            if (p1charge >= fullyChargedValue)
-            {
-                ship1.animator.SetBool("FullyCharged", true);
-            }
-            else if (p2charge >= fullyChargedValue)
-            {
-                ship2.animator.SetBool("FullyCharged", true);
             }
         }
         else
