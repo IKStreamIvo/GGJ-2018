@@ -154,7 +154,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1674781153253202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 10, z: 0}
+  m_LocalPosition: {x: 6.4, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4401964462051260}
@@ -167,7 +167,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1064763886474952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 10, z: 0}
+  m_LocalPosition: {x: -6.4, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4401964462051260}
@@ -282,8 +282,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnableObstacles:
-  - {fileID: 1634896378841464, guid: 9bc43dc17a85a53429e6046c348dbb4f, type: 2}
-  - {fileID: 1634896378841464, guid: bd00f3480131fa642964946846f4bd9b, type: 2}
+  - {fileID: 1150487849289662, guid: 11e7cb470eeaefb48b65b1364e278e7f, type: 2}
+  - {fileID: 1150487849289662, guid: ca0feb2c6011173499e06f1306d3e9c2, type: 2}
+  - {fileID: 1150487849289662, guid: 2be0e4f2ee5ac294482b37ed762c26fa, type: 2}
   spawnableShips:
   - {fileID: 1485471752172072, guid: 2c4caab8b66e17a48b1d4196f40a09f7, type: 2}
   spawnableForts:
@@ -298,13 +299,12 @@ MonoBehaviour:
   targetZ: 1
   enableObstacleSpawn: 1
   obstacleSpawnDelay: 0
-  obstacleSpawnInterval: 3
-  obstacleVelocity: 1
-  fortSpawnChance: 0.06
+  obstacleSpawnInterval: 30
+  obstacleVelocity: 0.6
+  fortSpawnChance: 1
   enableShipSpawn: 1
-  shipSpawnDelay: 0
-  shipSpawnInterval: 3
-  shipVelocity: 3
+  shipSpawnDelay: 5
+  shipSpawnInterval: 8
 --- !u!114 &114666569572442934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,11 +316,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23773ea46717f0b4a8e683cbffd71c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamHealth: 1000
-  Ship1Prefab: {fileID: 1128038154231968, guid: 84bc1d515b630aa40a3e0580c31d77a4,
-    type: 2}
-  Ship2Prefab: {fileID: 1030877603747226, guid: f5369513d3870d44381467263c7e003e,
-    type: 2}
+  maxTeamHealth: 1000
+  healthBar: {fileID: 0}
+  ShipPrefabs:
+  - {fileID: 1128038154231968, guid: 84bc1d515b630aa40a3e0580c31d77a4, type: 2}
+  - {fileID: 1030877603747226, guid: d61e6a8b66ae93b4e8825b35385d7e07, type: 2}
+  - {fileID: 1030877603747226, guid: f5369513d3870d44381467263c7e003e, type: 2}
+  - {fileID: 1030877603747226, guid: 39b995e81df764c4aade45b761c2d55f, type: 2}
   Ship1Spawn: {x: -4, y: -2.75}
   Ship2Spawn: {x: 4, y: -2.75}
   ShipTetherPrefab: {fileID: 1933568364663934, guid: a007f849318c4864d91314e8a9587f7b,

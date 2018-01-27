@@ -36,10 +36,14 @@ public class Spawner : MonoBehaviour {
     void SpawnObstacles()
     {
         if (!enableObstacleSpawn) return;
+        List<GameObject> spawnableObstaclesPool = spawnableObstacles;
+
         for (int i = 0; i < obstacleSpawnPoints.Count; i++)
         {
             Vector2 spawnPoint = obstacleSpawnPoints[i].position;
-            GameObject obstacle = spawnableObstacles[Random.Range(0, spawnableObstacles.Count)];
+            int randomIndex = Random.Range(0, spawnableObstaclesPool.Count);
+            GameObject obstacle = spawnableObstaclesPool[randomIndex];
+            spawnableObstacles.RemoveAt(randomIndex);
             obstacle = Instantiate(obstacle, spawnPoint, Quaternion.Euler(0,0,0), transform);
             obstacle.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -obstacleVelocity);
 
@@ -82,8 +86,8 @@ public class Spawner : MonoBehaviour {
         }
         for (int i = 0; i < fortSpawns.Count; i++)
         {
-            Vector2 spawnPoint = fortSpawns[i].position;
-            Quaternion rot = Quaternion.Euler(0, -1, 0);
+            Vector3 spawnPoint = fortSpawns[i].position;
+            Quaternion rot = Quaternion.Euler(0, 0, 180);
 
             GameObject fort = spawnableForts[Random.Range(0, spawnableForts.Count)];
             fort = Instantiate(fort, spawnPoint, rot, obstacle.transform);
