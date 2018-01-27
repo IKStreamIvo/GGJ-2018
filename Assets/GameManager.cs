@@ -224,33 +224,48 @@ public class GameManager : MonoBehaviour {
         int p2fire = Mathf.CeilToInt(Input.GetAxis("P2Fire"));
         if (p1fire == 1)
         {
-            if (bulletPrefab != null)
+            if (ship1.BulletPrefab != null)
             {
                 if (Time.time > fireRate + lastShotp1)
                 {
-                    Instantiate(bulletPrefab, ship1.transform.position + ship1.transform.forward * ship1.coll.radius, ship1.transform.rotation);
+                    AudioManager.instance.PlaySound(AudioManager.Sound.PlayerLaser1);
+
+                    GameObject bullet = Instantiate(ship1.BulletPrefab, ship1.transform.position + ship1.transform.forward * ship1.coll.radius, ship1.transform.rotation);
+                    bullet.GetComponent<Bullet>().damage = ship1.damage;
                     lastShotp1 = Time.time;
                 }
             }
         }
         if (p2fire == 1)
         {
-            if (bulletPrefab != null)
+            if (ship2.BulletPrefab != null)
             {
-                if (Time.time > fireRate + lastShotp1)
+                if (Time.time > fireRate + lastShotp2)
                 {
-                    Instantiate(bulletPrefab, ship2.transform.position + ship2.transform.forward * ship2.coll.radius, ship2.transform.rotation);
-                    lastShotp1 = Time.time;
+                    AudioManager.instance.PlaySound(AudioManager.Sound.PlayerLaser2);
+
+                    GameObject bullet = Instantiate(ship2.BulletPrefab, ship2.transform.position + ship2.transform.forward * ship2.coll.radius, ship2.transform.rotation);
+                    bullet.GetComponent<Bullet>().damage = ship2.damage;
+                    lastShotp2 = Time.time;
                 }
             }
         }
     }
 
-    public void applyDamage(int damage)
+    public void applyDamage(float damage)
     {
+        int rnd = Random.Range(0, 3);
+        if (rnd == 0)
+            AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage1);
+        else if(rnd == 1)
+            AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage2);
+        else
+            AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage3);
+
         currentTeamHealth -= damage;
         if (currentTeamHealth <= 0)
         {
+            AudioManager.instance.PlaySound(AudioManager.Sound.PlayerExplode);
             Debug.LogError("Team Died!");
             Destroy(ship1.gameObject);
             Destroy(ship2.gameObject);

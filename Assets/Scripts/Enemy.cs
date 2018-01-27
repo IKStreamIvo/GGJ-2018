@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    public int health = 500;
+    public float health = 500f;
     public float fireRate = 100f;
 
     //public float rotationSpeed = 5f;
@@ -94,11 +94,17 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    protected virtual void ApplyDamage(int damage)
+    protected virtual void ApplyDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
         {
+            int rnd = Random.Range(0, 1);
+            if (rnd == 0)
+                AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
+            else 
+                AudioManager.instance.PlaySound(AudioManager.Sound.EnemyLaser);
+
             Destroy(transform.gameObject);
         }
     }

@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 50867731612370076}
   - component: {fileID: 61577231924637696}
   - component: {fileID: 114829076092571716}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: BulletRed
-  m_TagString: Bullet
+  m_TagString: Player Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4940081458054070}
   - component: {fileID: 212749952245515294}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,8 +6,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
     public float speed = 4f;
     public float ttl = 10f;
-    public int damage = 0;
-    // Use this for initialization
+    public float damage = 0;
+    
+
     void Start()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
