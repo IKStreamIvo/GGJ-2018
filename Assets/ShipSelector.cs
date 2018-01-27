@@ -79,7 +79,7 @@ public class ShipSelector : MonoBehaviour {
         if (Input.GetButtonDown("P1Select"))
         {
             p1selected = options[p1];
-            p1selected.image.color = new Color(0f, .5f, 0f);
+            p1selected.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
             if (p2selected != null)
             {
                 StartGame();
@@ -89,14 +89,14 @@ public class ShipSelector : MonoBehaviour {
         {
             if (p1selected != null)
             {
-                p1selected.image.color = new Color(1f, 1f, 1f);
+                p1selected.transform.localScale = new Vector3(1f, 1f, 1f);
                 p1selected = null;
             }
         }
         if (Input.GetButtonDown("P2Select"))
         {
             p2selected = options[p2];
-            p2selected.image.color = new Color(0f, .5f, 0f);
+            p2selected.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
             if (p1selected != null)
             {
                 StartGame();
@@ -106,7 +106,8 @@ public class ShipSelector : MonoBehaviour {
         {
             if (p2selected != null)
             {
-                p2selected.image.color = new Color(1f, 1f, 1f);
+                p2selected.transform.localScale = new Vector3(1f, 1f, 1f);
+                //p2selected.image.color = new Color(1f, 1f, 1f);
                 p2selected = null;
             }
         }

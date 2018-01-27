@@ -91,6 +91,7 @@ public class Spawner : MonoBehaviour {
 
             GameObject fort = spawnableForts[Random.Range(0, spawnableForts.Count)];
             fort = Instantiate(fort, spawnPoint, rot, obstacle.transform);
+            Debug.Log(fort + " " + i);
         }
     }
 }

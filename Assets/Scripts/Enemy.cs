@@ -109,10 +109,14 @@ public class Enemy : MonoBehaviour {
         if (health <= 0)
         {
             AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
-
             Destroy(transform.gameObject);
         }
     }
+
+    /*private void OnDestroy()
+    {
+        Debug.LogError(gameObject.name + "Destroyed");
+    }*/
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {

@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour {
     {
         SetGameBounds();
 
-        if(tether == null)
+        if(tether.line == null)
         {
             return;
         }
