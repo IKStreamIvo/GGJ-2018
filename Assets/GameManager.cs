@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour {
     {
         //ControllerSetup();
 
-        p1movement = new Vector2(Input.GetAxisRaw("JoyInputHor"), Input.GetAxisRaw("P1MovVer"));
+        p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
         /*if(p1movement == new Vector2(0f, 0f))
         {
             try
