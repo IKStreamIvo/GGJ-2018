@@ -303,8 +303,13 @@ public class GameManager : MonoBehaviour {
             Debug.LogError("Team Died!");
             Destroy(ship1.gameObject);
             Destroy(ship2.gameObject);
+            Destroy(tether.gameObject);
         }
         healthBar.sizeDelta = new Vector2(currentTeamHealth * healthScale, healthBar.sizeDelta.y);
         healthBar.GetChild(0).GetComponent<Text>().text = (((float)currentTeamHealth/(float)maxTeamHealth) * 100f).ToString() + "%";
+    }
+
+    void OnGUI()
+    {
     }
 }
