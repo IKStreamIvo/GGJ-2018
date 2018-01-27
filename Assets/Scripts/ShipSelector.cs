@@ -8,6 +8,9 @@ public class ShipSelector : MonoBehaviour {
     public Transform P1Text;
     public Transform P2Text;
 
+    public Transform SelectButton1;
+    public Transform SelectButton2;
+
     private bool p1axisInUse;
     private bool p2axisInUse;
 
@@ -164,6 +167,7 @@ public class ShipSelector : MonoBehaviour {
             p1 = next;
             option.Select(true);
             P1Text.position = new Vector2(option.transform.position.x, P1Text.position.y);
+            SelectButton1.position = new Vector2(option.transform.position.x, SelectButton1.position.y);
         }
         else
         {
@@ -207,6 +211,7 @@ public class ShipSelector : MonoBehaviour {
             p2 = next;
             option.Select(true);
             P2Text.position = new Vector2(option.transform.position.x, P2Text.position.y);
+            SelectButton2.position = new Vector2(option.transform.position.x, SelectButton2.position.y);
         }
     }
 }

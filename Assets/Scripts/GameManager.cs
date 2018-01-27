@@ -129,7 +129,6 @@ public class GameManager : MonoBehaviour {
             ///key down and was previously pressed?
             if (p1tp == 1 && p1tpDown)
             {
-                Debug.Log(p1charge + "/" + fullyChargedValue);
                 p1charge += chargeSpeed * Time.deltaTime;
                 if (p1charge >= fullyChargedValue)
                 {
