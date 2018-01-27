@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XInputDotNetPure;
 
 public class GameManager : MonoBehaviour {
 
@@ -110,8 +109,8 @@ public class GameManager : MonoBehaviour {
         if (tether.line.enabled)
         {
             ///Get input
-            int p1tp = Mathf.CeilToInt(Input.GetAxisRaw("P1Teleport"));
-            int p2tp = Mathf.CeilToInt(Input.GetAxisRaw("P2Teleport"));
+            int p1tp = Mathf.CeilToInt(Input.GetAxis("P1Teleport"));
+            int p2tp = Mathf.CeilToInt(Input.GetAxis("P2Teleport"));
             if (p1tp == 1)
             {
                 p2charge = 0f;
@@ -194,27 +193,8 @@ public class GameManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //ControllerSetup();
-
         p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
-        /*if(p1movement == new Vector2(0f, 0f))
-        {
-            try
-            {
-                p1movement = new Vector2(state[0].ThumbSticks.Left.X, state[0].ThumbSticks.Left.Y);
-            }
-            catch { }
-        }*/
         p2movement = new Vector2(Input.GetAxisRaw("P2MovHor"), Input.GetAxisRaw("P2MovVer"));
-        if (p2movement == new Vector2(0f, 0f))
-        /*{
-            try
-            {
-                Debug.Log(state[0].PacketNumber + "    " + state[1].PacketNumber);
-                p2movement = new Vector2(state[1].ThumbSticks.Left.X, state[1].ThumbSticks.Left.Y);
-            }
-            catch { }
-        }*/
 
         p1rotation = new Vector2(Input.GetAxisRaw("P1RotHor"), Input.GetAxisRaw("P1RotVer"));
         p2rotation = new Vector2(Input.GetAxisRaw("P2RotHor"), Input.GetAxisRaw("P2RotVer"));
@@ -238,7 +218,9 @@ public class GameManager : MonoBehaviour {
         }
 
         //Fire bullets
-        if (Input.GetButton("P1Fire"))
+        int p1fire = Mathf.CeilToInt(Input.GetAxis("P1Fire"));
+        int p2fire = Mathf.CeilToInt(Input.GetAxis("P2Fire"));
+        if (p1fire == 1)
         {
             if (bulletPrefab != null)
             {
@@ -249,7 +231,7 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        if (Input.GetButton("P2Fire"))
+        if (p2fire == 1)
         {
             if (bulletPrefab != null)
             {
