@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour {
     private float p1charge;
     private float p2charge;
 
+    private float minX, minY, maxX, maxY;
+
     void Start ()
     {
         //Spawn players	
@@ -41,9 +43,45 @@ public class GameManager : MonoBehaviour {
         tether.ship1 = ship1;
         tether.ship2 = ship2;
     }
+
+    void SetGameBounds()
+    {
+        Vector2 bottomCorner = Camera.main.ViewportToWorldPoint(Camera.main.transform.position);
+        Vector2 topCorner = Camera.main.ViewportToWorldPoint(new Vector3(1,1,Camera.main.transform.position.z));
+
+        minX = bottomCorner.x;
+        minY = bottomCorner.y;
+        maxX = topCorner.x;
+        maxY = topCorner.y;
+
+        Transform shipTransform = ship1.transform;
+        
+        for (int i = 0; i < 2; i++)
+        {
+            if (i == 1)
+            {
+                shipTransform = ship2.transform;
+            }
+
+            Vector3 pos = shipTransform.position;
+            // Horizontal contraint
+            if (pos.x < minX) pos.x = minX;
+            if (pos.x > maxX) pos.x = maxX;
+
+            // vertical contraint
+            if (pos.y < minY) pos.y = minY;
+            if (pos.y > maxY) pos.y = maxY;
+
+            // Update position
+            shipTransform.position = pos;
+
+        }        
+    }
 	
 	void Update ()
     {
+        SetGameBounds();
+
         p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
         p2movement = new Vector2(Input.GetAxisRaw("P2MovHor"), Input.GetAxisRaw("P2MovVer"));
 
@@ -96,7 +134,7 @@ public class GameManager : MonoBehaviour {
                 Collider2D hit = Physics2D.OverlapCircle(ship1.transform.position + direction, shipSize - .2f);
                 if (hit != null)
                 {
-                    targetPos = ship1.transform.position + direction * (teleportDistance - shipSize * 2f);
+                    targetPos = ship2.transform.position + direction * (teleportDistance - shipSize * 2f);
                 }
                 ///teleport
                 ship2.transform.position = targetPos;

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4683762863238718}
   m_Layer: 9
-  m_Name: Fort Spawn
+  m_Name: Fort Spawn Point
   m_TagString: Fort Spawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

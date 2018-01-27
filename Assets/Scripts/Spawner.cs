@@ -7,17 +7,18 @@ public class Spawner : MonoBehaviour {
     public List<GameObject> spawnableObstacles;
     public List<GameObject> spawnableForts;
 
-    public float spawnDelay = 0f;
-    public float spawnTime = 3f;
-
-    public float obstacleVelocity = 3f;
-
     public List<Vector2> spawnPoints;
     public int targetLayer = 1;
 
+
+    public float spawnDelay = 0f;
+    public float spawnInterval = 3f;
+
+    public float obstacleVelocity = 3f;
+
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("SpawnObstacles", spawnDelay, spawnTime);
+        InvokeRepeating("SpawnObstacles", spawnDelay, spawnInterval);
 	}
 
     void SpawnObstacles()

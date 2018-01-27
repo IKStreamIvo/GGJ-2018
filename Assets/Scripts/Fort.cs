@@ -6,14 +6,17 @@ using UnityEngine;
 public class Fort : MonoBehaviour {
 
     public int health = 500;
-    public int dpm = 50;
+    public float fireRate = (50f/60f);
+
+    public GameObject bullet;
+    public Transform bulletSpawn;
 
     GameObject[] players;
 
     GameObject targetPlayer;
 
-    float cooldown;
-	
+    float lastShot = 0f;
+
 	// Update is called once per frame
 	void Update () {
         if (players == null)
@@ -46,7 +49,11 @@ public class Fort : MonoBehaviour {
     {
         if (targetPlayer != null)
         {
-            transform.right = targetPlayer.transform.position - transform.position;
+            transform.up = targetPlayer.transform.position - transform.position;
+        }
+        if (targetPlayer != null && Time.time > fireRate + lastShot)
+        {
+            Fire();
         }
     }
 
@@ -63,5 +70,17 @@ public class Fort : MonoBehaviour {
             targetPlayer = targets[1];
         }
 
+    }
+
+    void Fire()
+    {
+        if (bullet != null && bulletSpawn != null)
+        {
+            Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+            lastShot = Time.time;
+        } else
+        {
+            Debug.LogError("Fort is trying to fire, but it has no bullet assigned!");
+        }
     }
 }
