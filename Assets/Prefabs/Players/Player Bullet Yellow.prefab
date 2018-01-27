@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114891188791065116}
   m_Layer: 12
   m_Name: Player Bullet Yellow
-  m_TagString: Bullet
+  m_TagString: Player Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a23ffed325acfce44bfd9c4b1dd1aa2f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e949d1405c7fe394789619d853c123b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
