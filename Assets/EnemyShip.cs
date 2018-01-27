@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyShip : Enemy {
 
     public bool moveTowardsPlayers = true;
-    public float movementSpeed = 20f;
+    public float movementSpeed = 2f;
 
 
     protected override void AcquireTarget()

@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4588612080277502}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Bullet Spawn Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 50325395739424134}
   - component: {fileID: 58374067933020466}
   - component: {fileID: 114088450436855264}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Enemy Ship 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4437697588581478}
   - component: {fileID: 212874827545572568}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4820465745714176}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Bullet Spawn Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1485471752172072}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 200
   fireRate: 40
+  rotationSpeed: 5
   disableAutoFire: 0
   bullet: {fileID: 1884456372365390, guid: ebc991831df42b04b8706ef51b05c061, type: 2}
   bulletSpawns:
