@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour {
 
@@ -17,6 +20,8 @@ public class Spawner : MonoBehaviour {
     public float obstacleSpawnDelay = 0f;
     public float obstacleSpawnInterval = 3f;
     public float obstacleVelocity = 3f;
+    [Range(0, 1f)]
+    public float fortSpawnChance = 1f;
 
     public bool enableShipSpawn = true;
     public float shipSpawnDelay = 0f;
@@ -70,7 +75,7 @@ public class Spawner : MonoBehaviour {
         for (int i = 0; i < obstacle.transform.childCount; i++)
         {
             Transform child = obstacle.transform.GetChild(i);
-            if (child.tag == "Fort Spawn")
+            if (child.tag == "Fort Spawn" && Random.Range(0, 1f) <= fortSpawnChance) 
             {
                 fortSpawns.Add(child);
             }

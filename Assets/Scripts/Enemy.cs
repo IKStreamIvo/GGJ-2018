@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour {
     public int health = 500;
     public float fireRate = 100f;
 
+    public float rotationSpeed = 5f;
+
     public bool disableAutoFire = false;
     public GameObject bullet;
     public List<Transform> bulletSpawns = new List<Transform>();
@@ -17,6 +19,12 @@ public class Enemy : MonoBehaviour {
 
     protected float lastShot = 0f;
     protected int lastSpawn = 0;
+    protected Rigidbody2D rb;
+
+    protected void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     protected void Update()

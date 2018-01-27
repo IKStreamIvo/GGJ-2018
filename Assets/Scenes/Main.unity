@@ -159,116 +159,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &318505161
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 318505163}
-  - component: {fileID: 318505162}
-  - component: {fileID: 318505164}
-  - component: {fileID: 318505165}
-  m_Layer: 0
-  m_Name: Game Manager
-  m_TagString: GameController
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &318505162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 318505161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23773ea46717f0b4a8e683cbffd71c25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ship1Prefab: {fileID: 1128038154231968, guid: 84bc1d515b630aa40a3e0580c31d77a4,
-    type: 2}
-  Ship2Prefab: {fileID: 1030877603747226, guid: f5369513d3870d44381467263c7e003e,
-    type: 2}
-  Ship1Spawn: {x: -4, y: -2.75}
-  Ship2Spawn: {x: 4, y: -2.75}
-  ShipTetherPrefab: {fileID: 1933568364663934, guid: a007f849318c4864d91314e8a9587f7b,
-    type: 2}
-  bulletPrefab: {fileID: 1597388650839762, guid: 6cae278e6e8be5d498d51edf8e02f1d4,
-    type: 2}
-  moveSpeed: 3
-  rotateSpeed: 3
-  ship1: {fileID: 0}
-  ship2: {fileID: 0}
-  tether: {fileID: 0}
-  teleportDistance: 5
-  fullyChargedValue: 2
-  chargeSpeed: 1
-  fireRate: 0.2
---- !u!4 &318505163
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 318505161}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &318505164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 318505161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c66f2d2b423a8942bde4d8ac6487947, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnableObstacles:
-  - {fileID: 1634896378841464, guid: 9bc43dc17a85a53429e6046c348dbb4f, type: 2}
-  - {fileID: 1634896378841464, guid: bd00f3480131fa642964946846f4bd9b, type: 2}
-  spawnableForts:
-  - {fileID: 1554564249955094, guid: 5c6af918cbbb5a846b02259d289a66f4, type: 2}
-  spawnPoints:
-  - {x: 0, y: 6}
-  - {x: 6, y: 6}
-  - {x: -6, y: 6}
-  targetLayer: 1
-  spawnDelay: 0
-  spawnInterval: 4
-  obstacleVelocity: 1
---- !u!61 &318505165
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 318505161}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 20, y: 20}
-  m_EdgeRadius: 0
 --- !u!1 &1412923886
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,3 +386,61 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1001 &1863576915
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4789951921632388, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789951921632388, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789951921632388, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789951921632388, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789951921632388, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789951921632388, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789951921632388, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789951921632388, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1597388650839762, guid: 6cae278e6e8be5d498d51edf8e02f1d4,
+        type: 2}
+    - target: {fileID: 114666569572442934, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: fireRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114052315026569016, guid: d6a72588f5c574d4c905e5043bbd79f4,
+        type: 2}
+      propertyPath: fortSpawnChance
+      value: 0.06
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d6a72588f5c574d4c905e5043bbd79f4, type: 2}
+  m_IsPrefabParent: 0
