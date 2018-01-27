@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour {
     public float spawnDelay = 0f;
     public float spawnTime = 3f;
 
+    public float obstacleVelocity = 3f;
+
     public List<Vector2> spawnPoints;
     public int targetLayer = 1;
 
@@ -25,7 +27,7 @@ public class Spawner : MonoBehaviour {
             Vector2 spawnPoint = spawnPoints[i];
             GameObject obstacle = spawnableObstacles[Random.Range(0, spawnableObstacles.Count)];
             obstacle = Instantiate(obstacle, spawnPoint, Quaternion.Euler(0,0,0), transform);
-            obstacle.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -10);
+            obstacle.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -obstacleVelocity);
 
             PlaceForts(obstacle);
         }
