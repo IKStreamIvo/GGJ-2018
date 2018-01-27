@@ -8,6 +8,7 @@ public class Ship : MonoBehaviour
     public float damage = 150f;
     public float shootingSpeed = (50f / 60f);
     public float moveSpeed = 3f;
+    public float bulletSpeed = 5f;
 
     [Header("Powerups")]
     public float damageMultiplier = 1f;

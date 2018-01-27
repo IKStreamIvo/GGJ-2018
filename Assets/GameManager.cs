@@ -232,6 +232,9 @@ public class GameManager : MonoBehaviour {
 
                     GameObject bullet = Instantiate(ship1.BulletPrefab, ship1.transform.position + ship1.transform.forward * ship1.coll.radius, ship1.transform.rotation);
                     bullet.GetComponent<Bullet>().damage = ship1.damage;
+                    Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                    rb.velocity = bullet.transform.up * ship1.bulletSpeed;
+                    Destroy(bullet, 10);
                     lastShotp1 = Time.time;
                 }
             }
@@ -246,6 +249,9 @@ public class GameManager : MonoBehaviour {
 
                     GameObject bullet = Instantiate(ship2.BulletPrefab, ship2.transform.position + ship2.transform.forward * ship2.coll.radius, ship2.transform.rotation);
                     bullet.GetComponent<Bullet>().damage = ship2.damage;
+                    Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                    rb.velocity = bullet.transform.up * ship2.bulletSpeed;
+                    Destroy(bullet, 10);
                     lastShotp2 = Time.time;
                 }
             }
