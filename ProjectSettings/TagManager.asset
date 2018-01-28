@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Player Bullet
   - Obstacle
+  - Destroy on Leave
   layers:
   - Default
   - TransparentFX
