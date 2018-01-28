@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     public GameObject BulletPrefab;
+    public GameObject ShieldPrefab;
     public float damage = 150f;
     public float shootingSpeed = (50f / 60f);
     public float moveSpeed = 3f;

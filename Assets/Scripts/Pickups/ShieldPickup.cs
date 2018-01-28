@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class ShieldPickup : Pickup
 {
-
     public float invincibiltyDuration = 4f;
+    public GameObject defaultShieldPrefab;
     public override void getPickup(Ship playerShip)
     {
         Debug.Log("Shield collected");
-        GameManager.instance.turnInvincibleOn(playerShip, invincibiltyDuration);
+        if (playerShip.ShieldPrefab == null)
+        {
+            if (this.defaultShieldPrefab == null) return;
+            playerShip.ShieldPrefab = defaultShieldPrefab;
+        }
+        GameManager.instance.TurnInvincibleOn(playerShip, invincibiltyDuration);
     }
 }

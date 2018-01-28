@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour {
     private float minX, minY, maxX, maxY;
     private BoxCollider2D stageBounds;
 
+    private GameObject shield;
+
 
     private void Awake()
     {
@@ -90,28 +92,31 @@ public class GameManager : MonoBehaviour {
         scoreText.text = "Score:\n" + Score;
     }
 
-    public void turnInvincibleOn(Ship ship, float time)
+    public void TurnInvincibleOn(Ship ship, float time)
     {
         // Move tag to invincible
         ship.gameObject.tag = "Invincible";
         ship.gameObject.layer = LayerMask.NameToLayer("Invincible");
+        shield = Instantiate(ship.ShieldPrefab, ship.transform);
 
-        StartCoroutine(turnInvincibleOff(ship, time));
+        StartCoroutine(TurnInvincibleOff(ship, time));
     }
 
-    IEnumerator turnInvincibleOff(Ship ship, float time)
+    IEnumerator TurnInvincibleOff(Ship ship, float time)
     {
         yield return new WaitForSeconds(time);
         ship.gameObject.tag = "Player";
         ship.gameObject.layer = LayerMask.NameToLayer("Player");
+
+        Destroy(shield);
     }
 
-    public void turnWeaponUpgradeOn(Ship ship, float time)
+    public void TurnWeaponUpgradeOn(Ship ship, float time)
     {
-        StartCoroutine(turnWeaponUpgradeOff(ship, time));
+        StartCoroutine(TurnWeaponUpgradeOff(ship, time));
     }
 
-    IEnumerator turnWeaponUpgradeOff(Ship ship, float time)
+    IEnumerator TurnWeaponUpgradeOff(Ship ship, float time)
     {
         yield return new WaitForSeconds(time);
         

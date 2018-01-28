@@ -9,6 +9,6 @@ public class WeaponPickup : Pickup
     public override void getPickup(Ship playerShip)
     {
         Debug.Log("Weapon collected");
-        GameManager.instance.turnWeaponUpgradeOn(playerShip, updgradeDuration);
+        GameManager.instance.TurnWeaponUpgradeOn(playerShip, updgradeDuration);
     }
 }
