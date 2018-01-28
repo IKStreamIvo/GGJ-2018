@@ -27,6 +27,11 @@ public class Enemy : MonoBehaviour {
     protected Rigidbody2D rb;
     public float damage = 50f;
 
+
+    
+    public float pickupSpawnChance = 0.5f;
+    public List<Pickup> pickups = new List<Pickup>();
+
     protected void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -138,17 +143,18 @@ public class Enemy : MonoBehaviour {
         GameManager.instance.AddScore((int)damage);
         if (health <= 0)
         {
+            if (Random.Range(0, 1f) < pickupSpawnChance) {
+                if (pickups.Count > 0)
+                {
+                    Instantiate(pickups[Random.Range(0, pickups.Count)], transform.position, Quaternion.Euler(0,0,0));
+                }
+            }
             AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
             GameManager.instance.Explosion(transform.position, explosionPrefab);
             Debug.Log(gameObject.name + " " + explosionPrefab);
             Destroy(transform.gameObject);
         }
     }
-
-    /*private void OnDestroy()
-    {
-        Debug.LogError(gameObject.name + "Destroyed");
-    }*/
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {

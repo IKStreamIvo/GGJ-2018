@@ -568,6 +568,10 @@ MonoBehaviour:
   alternateFire: 1
   collisionDamage: 100
   damage: 50
+  pickupSpawnChance: 0.05
+  pickups:
+  - {fileID: 114934434743695156, guid: 5749e0e9c21659447b4ff8574a8f76ab, type: 2}
+  - {fileID: 114370108727127892, guid: d342144d93296eb40b134d787b5233ab, type: 2}
   aimAtPlayer: 1
 --- !u!114 &114479941975759654
 MonoBehaviour:
@@ -593,6 +597,10 @@ MonoBehaviour:
   alternateFire: 1
   collisionDamage: 100
   damage: 50
+  pickupSpawnChance: 0.05
+  pickups:
+  - {fileID: 114934434743695156, guid: 5749e0e9c21659447b4ff8574a8f76ab, type: 2}
+  - {fileID: 114370108727127892, guid: d342144d93296eb40b134d787b5233ab, type: 2}
   aimAtPlayer: 1
 --- !u!212 &212221490881596822
 SpriteRenderer:
