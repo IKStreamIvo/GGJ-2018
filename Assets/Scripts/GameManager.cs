@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
     float healthScale;
 
     public GameUI gameUI;
-
+    public GameObject explosionPrefab;
 
     public GameObject[] ShipPrefabs;
     public Vector2 Ship1Spawn;
@@ -308,6 +308,8 @@ public class GameManager : MonoBehaviour {
         if (currentTeamHealth <= 0)
         {
             AudioManager.instance.PlaySound(AudioManager.Sound.PlayerExplode);
+            Explosion(ship1.transform.position);
+            Explosion(ship2.transform.position);
             Destroy(ship1.gameObject);
             Destroy(ship2.gameObject);
             Destroy(tether.gameObject);
@@ -319,7 +321,8 @@ public class GameManager : MonoBehaviour {
         healthBar.GetChild(0).GetComponent<Text>().text = (((float)currentTeamHealth/(float)maxTeamHealth) * 100f).ToString() + "%";
     }
 
-    void OnGUI()
+    public void Explosion(Vector2 position)
     {
+        Instantiate(explosionPrefab, position, Quaternion.identity);
     }
 }
