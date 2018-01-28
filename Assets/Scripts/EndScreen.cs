@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour {
 
@@ -18,5 +19,13 @@ public class EndScreen : MonoBehaviour {
             text.SetText(i.ToString());
             yield return new WaitForSeconds(countDelay);
         }*/
+    }
+
+    private void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }
