@@ -135,6 +135,7 @@ public class Enemy : MonoBehaviour {
     {
         AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage2);
         health -= damage;
+        GameManager.instance.AddScore((int)damage);
         if (health <= 0)
         {
             AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);

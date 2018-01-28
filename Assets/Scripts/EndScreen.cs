@@ -10,10 +10,13 @@ public class EndScreen : MonoBehaviour {
 
     public IEnumerator CountScore(int score)
     {
-        for (int i = 0; i <= score; i++)
+
+        text.SetText(score.ToString());
+        yield return null;
+        /*for (int i = 0; i <= score; i++)
         {
             text.SetText(i.ToString());
             yield return new WaitForSeconds(countDelay);
-        }
+        }*/
     }
 }
