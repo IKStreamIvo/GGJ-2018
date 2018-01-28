@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
 
     public void AddScore(int points)
     {
+        if (scoreText == null) return;
         Score += points;
         scoreText.text = "Score:\n" + Score;
     }
@@ -396,6 +397,7 @@ public class GameManager : MonoBehaviour {
 
     public void applyDamage(float damage)
     {
+        if (healthBar == null) return;
         currentTeamHealth -= damage;
         if (currentTeamHealth <= 0)
         {

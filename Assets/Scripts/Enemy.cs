@@ -27,8 +27,7 @@ public class Enemy : MonoBehaviour {
     protected Rigidbody2D rb;
     public float damage = 50f;
 
-
-    
+    [Range(0, 1f)]
     public float pickupSpawnChance = 0.5f;
     public List<Pickup> pickups = new List<Pickup>();
 
@@ -143,7 +142,7 @@ public class Enemy : MonoBehaviour {
         GameManager.instance.AddScore((int)damage);
         if (health <= 0)
         {
-            if (Random.Range(0, 1f) < pickupSpawnChance) {
+            if (Random.Range(0f, 1f) < pickupSpawnChance) {
                 if (pickups.Count > 0)
                 {
                     Instantiate(pickups[Random.Range(0, pickups.Count)], transform.position, Quaternion.Euler(0,0,0));
