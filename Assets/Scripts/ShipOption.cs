@@ -9,11 +9,13 @@ public class ShipOption : MonoBehaviour {
 
     public SpriteRenderer image;
     public new Animation animation;
+    Vector3 defaultScale;
 
     private void Awake()
     {
         image = GetComponent<SpriteRenderer>();
         animation = GetComponent<Animation>();
+        defaultScale = transform.lossyScale;
     }
 
     public void Select(bool yes)
@@ -29,7 +31,7 @@ public class ShipOption : MonoBehaviour {
         {
             isSelected = false;
             //image.enabled = false;
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = defaultScale;
             animation["ShipSelectionIdle"].time = 0f;
             animation.enabled = false;
         }

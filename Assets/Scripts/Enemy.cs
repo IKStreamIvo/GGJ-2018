@@ -33,6 +33,9 @@ public class Enemy : MonoBehaviour {
     // Update is called once per frame
     protected void Update()
     {
+        if (GameManager.instance.GameOver)
+            return;
+
         if (players == null)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
@@ -45,6 +48,9 @@ public class Enemy : MonoBehaviour {
 
     protected void GetClosestPlayer(List<GameObject> targets)
     {
+        if (targets[0] == null && targets[1] == null)
+            return;
+
         float distanceTarget1 = Vector2.Distance(targets[0].transform.position, transform.position);
         float distanceTarget2 = Vector2.Distance(targets[1].transform.position, transform.position);
 

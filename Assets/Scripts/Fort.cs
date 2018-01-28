@@ -12,9 +12,12 @@ public class Fort : Enemy {
         List<GameObject> targets = new List<GameObject>();
         for (int i = 0; i < players.Length; i++)
         {
-            if (players[i].transform.position.y <= transform.position.y)
+            if (players[i] != null)
             {
-                targets.Add(players[i]);
+                if (players[i].transform.position.y <= transform.position.y)
+                {
+                    targets.Add(players[i]);
+                }
             }
         }
 

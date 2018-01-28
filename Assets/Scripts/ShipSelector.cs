@@ -82,7 +82,8 @@ public class ShipSelector : MonoBehaviour {
         if (Input.GetButtonDown("P1Select"))
         {
             p1selected = options[p1];
-            p1selected.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+            p1selected.transform.localScale = new Vector3(1f, 1f, 1f);
+            p1selected.image.color = new Color(170f / 255f, 170f / 255f, 170f / 255f);
             if (p2selected != null)
             {
                 StartGame();
@@ -92,14 +93,17 @@ public class ShipSelector : MonoBehaviour {
         {
             if (p1selected != null)
             {
-                p1selected.transform.localScale = new Vector3(1f, 1f, 1f);
+                p1selected.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+                p1selected.image.color = new Color(1f, 1f, 1f);
                 p1selected = null;
             }
         }
         if (Input.GetButtonDown("P2Select"))
         {
             p2selected = options[p2];
-            p2selected.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+            p2selected.transform.localScale = new Vector3(1f, 1f, 1f);
+            p2selected.image.color = new Color(170f / 255f, 170f / 255f, 170f / 255f);
+
             if (p1selected != null)
             {
                 StartGame();
@@ -109,8 +113,8 @@ public class ShipSelector : MonoBehaviour {
         {
             if (p2selected != null)
             {
-                p2selected.transform.localScale = new Vector3(1f, 1f, 1f);
-                //p2selected.image.color = new Color(1f, 1f, 1f);
+                p2selected.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+                p2selected.image.color = new Color(1f, 1f, 1f);
                 p2selected = null;
             }
         }
@@ -167,7 +171,6 @@ public class ShipSelector : MonoBehaviour {
             p1 = next;
             option.Select(true);
             P1Text.position = new Vector2(option.transform.position.x, P1Text.position.y);
-            SelectButton1.position = new Vector2(option.transform.position.x, SelectButton1.position.y);
         }
         else
         {
@@ -211,7 +214,6 @@ public class ShipSelector : MonoBehaviour {
             p2 = next;
             option.Select(true);
             P2Text.position = new Vector2(option.transform.position.x, P2Text.position.y);
-            SelectButton2.position = new Vector2(option.transform.position.x, SelectButton2.position.y);
         }
     }
 }

@@ -7,11 +7,16 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
+    public bool GameOver;
+
     public float maxTeamHealth = 1000f;
     float currentTeamHealth;
 
     public RectTransform healthBar;
     float healthScale;
+
+    public GameUI gameUI;
+
 
     public GameObject[] ShipPrefabs;
     public Vector2 Ship1Spawn;
@@ -223,6 +228,9 @@ public class GameManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if (GameOver)
+            return;
+
         p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
         p2movement = new Vector2(Input.GetAxisRaw("P2MovHor"), Input.GetAxisRaw("P2MovVer"));
 
@@ -300,10 +308,12 @@ public class GameManager : MonoBehaviour {
         if (currentTeamHealth <= 0)
         {
             AudioManager.instance.PlaySound(AudioManager.Sound.PlayerExplode);
-            Debug.LogError("Team Died!");
             Destroy(ship1.gameObject);
             Destroy(ship2.gameObject);
             Destroy(tether.gameObject);
+            GameOver = true;
+            int score = 15;
+            gameUI.GameOver(score);
         }
         healthBar.sizeDelta = new Vector2(currentTeamHealth * healthScale, healthBar.sizeDelta.y);
         healthBar.GetChild(0).GetComponent<Text>().text = (((float)currentTeamHealth/(float)maxTeamHealth) * 100f).ToString() + "%";
