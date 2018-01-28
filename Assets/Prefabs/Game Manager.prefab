@@ -74,6 +74,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1394073045283948
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4976017900777946}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1415443941863712
 GameObject:
   m_ObjectHideFlags: 1
@@ -128,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4911931463343436}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +156,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1286039468558780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 10, z: 0}
+  m_LocalPosition: {x: 5, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4300383774565590}
@@ -183,8 +198,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4911931463343436}
+  - {fileID: 4976017900777946}
   - {fileID: 4053943982512508}
+  - {fileID: 4911931463343436}
   m_Father: {fileID: 4789951921632388}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -195,7 +211,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1373538809673398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4265019552765656}
@@ -238,8 +254,21 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827755236953900}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4300383774565590}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4976017900777946
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1394073045283948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 10, z: 0}
+  m_LocalPosition: {x: -5, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4300383774565590}
@@ -285,27 +314,27 @@ MonoBehaviour:
   - {fileID: 1150487849289662, guid: 11e7cb470eeaefb48b65b1364e278e7f, type: 2}
   - {fileID: 1150487849289662, guid: ca0feb2c6011173499e06f1306d3e9c2, type: 2}
   - {fileID: 1150487849289662, guid: 2be0e4f2ee5ac294482b37ed762c26fa, type: 2}
+  - {fileID: 1150487849289662, guid: b8897d1ab11146f48b43e92b11b8854f, type: 2}
   spawnableShips:
   - {fileID: 1485471752172072, guid: 2c4caab8b66e17a48b1d4196f40a09f7, type: 2}
   - {fileID: 1485471752172072, guid: 7eba7b180213fb242a57a60283a2a5d9, type: 2}
-  spawnableForts:
-  - {fileID: 1554564249955094, guid: 5c6af918cbbb5a846b02259d289a66f4, type: 2}
+  spawnableForts: []
   obstacleSpawnPoints:
   - {fileID: 4265019552765656}
   - {fileID: 4715162703209680}
   - {fileID: 4212967623356458}
   shipSpawnPoints:
-  - {fileID: 4911931463343436}
+  - {fileID: 4976017900777946}
   - {fileID: 4053943982512508}
   targetZ: 1
   enableObstacleSpawn: 1
   obstacleSpawnDelay: 0
   obstacleSpawnInterval: 30
   obstacleVelocity: 0.6
-  fortSpawnChance: 1
+  fortSpawnChance: 0
   enableShipSpawn: 1
-  shipSpawnDelay: 5
-  shipSpawnInterval: 8
+  shipSpawnDelay: 20
+  shipSpawnInterval: 30
 --- !u!114 &114666569572442934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,8 +346,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23773ea46717f0b4a8e683cbffd71c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameOver: 0
   maxTeamHealth: 1000
   healthBar: {fileID: 0}
+  gameUI: {fileID: 0}
+  explosionPrefab: {fileID: 1309377179618342, guid: af5af404246a71b4faafdc0755240a9f,
+    type: 2}
+  teleportPointer: {fileID: 0}
   ShipPrefabs:
   - {fileID: 1128038154231968, guid: 84bc1d515b630aa40a3e0580c31d77a4, type: 2}
   - {fileID: 1030877603747226, guid: d61e6a8b66ae93b4e8825b35385d7e07, type: 2}
@@ -335,7 +369,7 @@ MonoBehaviour:
   ship1: {fileID: 0}
   ship2: {fileID: 0}
   tether: {fileID: 0}
-  teleportDistance: 5
-  fullyChargedValue: 2
+  teleportDistance: 2
+  fullyChargedValue: 1.5
   chargeSpeed: 1
   fireRate: 0.2
