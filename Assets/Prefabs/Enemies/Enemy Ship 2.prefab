@@ -150,7 +150,7 @@ MonoBehaviour:
   health: 100
   fireRate: 20
   bulletSpeed: 4
-  explosionPrefab: {fileID: 1309377179618342, guid: af5af404246a71b4faafdc0755240a9f,
+  explosionPrefab: {fileID: 1546164548202330, guid: fa321b22b8b0c604ca0323fd1492ae8e,
     type: 2}
   disableAutoFire: 0
   bullet: {fileID: 1884456372365390, guid: 1dbea9a15cc1ddd4c8d490f461fe186e, type: 2}

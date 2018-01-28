@@ -10,6 +10,7 @@ TagManager:
   - Player Bullet
   - Obstacle
   - Destroy on Leave
+  - Enemy Bullet
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Player
   - Player Bullets
   - Enemy Ship
-  - 
+  - Fort Bullet
   - 
   - 
   - 
