@@ -70,7 +70,14 @@ public class Spawner : MonoBehaviour {
             Debug.Log("Player outside of destroy zone!");
             return;
         }
-        Destroy(collision.gameObject);
+        else if (collision.transform.CompareTag("Destroy on Leave"))
+        {
+            Destroy(collision.gameObject.transform.parent.gameObject);
+        }
+        else if (!collision.transform.CompareTag("Obstacle"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     void PlaceForts(GameObject obstacle)
