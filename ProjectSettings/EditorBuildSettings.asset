@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShipSelect.unity
     guid: 36cc57890a86aea40b60b50cc256dbc6
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 9bce28510f1dcf149be07877c48937aa
   - enabled: 1
