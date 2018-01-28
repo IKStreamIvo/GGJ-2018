@@ -168,6 +168,8 @@ MonoBehaviour:
   alternateFire: 1
   collisionDamage: 100
   damage: 50
+  pickupSpawnChance: 0.05
+  pickups: []
   aimAtPlayer: 1
 --- !u!212 &212254810146030294
 SpriteRenderer:
