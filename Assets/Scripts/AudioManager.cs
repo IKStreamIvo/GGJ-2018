@@ -14,7 +14,8 @@ public class AudioManager : MonoBehaviour {
         PlayerExplode,
         EnemyLaser, FortLaser,
         PlayerLaser1, PlayerLaser2,
-        ItemPickup
+        ItemPickup,
+        Player1Charged, Player2Charged
     }
 
     private void Awake()

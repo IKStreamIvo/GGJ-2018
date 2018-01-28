@@ -643,7 +643,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1941562158069294, guid: d0afbf4b74a20084d842d7e0bd2b80f7, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0afbf4b74a20084d842d7e0bd2b80f7, type: 2}
@@ -1038,7 +1038,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4adf21dfa75f04b478d4a1e37975a2a6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.551
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1130,6 +1130,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 45cee00cfdd1b5244a17ea2c40c8e219, type: 3}
   - {fileID: 8300000, guid: d83629ad87e1e614482a6a3fb0f241ba, type: 3}
   - {fileID: 8300000, guid: daa85d13e6424004f9ffa9d005ccaad6, type: 3}
+  - {fileID: 8300000, guid: eef9bcd1072706444a176e70a00b96e5, type: 3}
+  - {fileID: 8300000, guid: 71248b5883329104389f3e65784de3da, type: 3}
 --- !u!1 &1788075836
 GameObject:
   m_ObjectHideFlags: 0
