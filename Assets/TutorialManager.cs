@@ -1,25 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class TutorialManager : MonoBehaviour {
 
-    public static GameManager instance;
-
-    public Transform background;
-
-    public bool GameOver;
-
-    public float maxTeamHealth = 1000f;
-    float currentTeamHealth;
-
-    public RectTransform healthBar;
-    float healthScale;
-
-    public GameUI gameUI;
-    public GameObject explosionPrefab;
-    public GameObject teleportPointer;
+    public static TutorialManager instance;
 
     public GameObject[] ShipPrefabs;
     public Vector2 Ship1Spawn;
@@ -29,6 +14,9 @@ public class GameManager : MonoBehaviour {
 
     public float moveSpeed = 3f;
     public float rotateSpeed = 3f;
+
+    public GameObject explosionPrefab;
+    public GameObject teleportPointer;
 
     public Ship ship1;
     public Ship ship2;
@@ -53,14 +41,13 @@ public class GameManager : MonoBehaviour {
     private float minX, minY, maxX, maxY;
     private BoxCollider2D stageBounds;
 
-
     private void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(this);
     }
 
-    void Start ()
+    void Start()
     {
         stageBounds = GetComponent<BoxCollider2D>();
         //Spawn players	
@@ -72,14 +59,12 @@ public class GameManager : MonoBehaviour {
 
         tether.ship1 = ship1;
         tether.ship2 = ship2;
-        currentTeamHealth = maxTeamHealth;
-        healthScale = healthBar.sizeDelta.x / currentTeamHealth;
     }
 
     void SetGameBounds()
     {
         Vector2 bottomCorner = Camera.main.ViewportToWorldPoint(Camera.main.transform.position);
-        Vector2 topCorner = Camera.main.ViewportToWorldPoint(new Vector3(1,1,Camera.main.transform.position.z));
+        Vector2 topCorner = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.transform.position.z));
 
         minX = bottomCorner.x;
         minY = bottomCorner.y;
@@ -103,7 +88,7 @@ public class GameManager : MonoBehaviour {
                 if (pos.x > maxX) pos.x = maxX;
 
                 // vertical contraint-
-                //if (pos.y < minY) pos.y = minY;
+                if (pos.y < minY) pos.y = minY;
                 if (pos.y > maxY) pos.y = maxY;
 
                 // Update position
@@ -118,11 +103,11 @@ public class GameManager : MonoBehaviour {
     bool p2tpDown;
     bool p2fullyCharged;
 
-	void Update ()
+    void Update()
     {
         SetGameBounds();
 
-        if(tether.line == null)
+        if (tether.line == null)
         {
             return;
         }
@@ -288,8 +273,6 @@ public class GameManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (GameOver)
-            return;
 
         p1movement = new Vector2(Input.GetAxisRaw("P1MovHor"), Input.GetAxisRaw("P1MovVer"));
         p2movement = new Vector2(Input.GetAxisRaw("P2MovHor"), Input.GetAxisRaw("P2MovVer"));
@@ -352,31 +335,5 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-    }
-
-    public void applyDamage(float damage)
-    {
-        currentTeamHealth -= damage;
-        if (currentTeamHealth <= 0)
-        {
-            AudioManager.instance.PlaySound(AudioManager.Sound.PlayerExplode);
-            Explosion(ship1.transform.position);
-            Explosion(ship2.transform.position);
-            Destroy(ship1.gameObject);
-            Destroy(ship2.gameObject);
-            Destroy(tether.gameObject);
-            GameOver = true;
-            int score = 15;
-            gameUI.GameOver(score);
-        }
-        healthBar.sizeDelta = new Vector2(currentTeamHealth * healthScale, healthBar.sizeDelta.y);
-        healthBar.GetChild(0).GetComponent<Text>().text = (((float)currentTeamHealth/(float)maxTeamHealth) * 100f).ToString() + "%";
-    }
-
-    public void Explosion(Vector2 position, GameObject prefab = null)
-    {
-        if (prefab == null)
-            prefab = explosionPrefab;
-        Instantiate(prefab, position, Quaternion.identity, background);
     }
 }

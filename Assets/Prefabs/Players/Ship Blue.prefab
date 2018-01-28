@@ -140,8 +140,8 @@ MonoBehaviour:
     type: 2}
   damage: 150
   shootingSpeed: 0.8333333
-  moveSpeed: 3
-  bulletSpeed: 5
+  moveSpeed: 4
+  bulletSpeed: 6
   damageMultiplier: 1
   shootingSpeedMultiplier: 1
   speedMultiplier: 1

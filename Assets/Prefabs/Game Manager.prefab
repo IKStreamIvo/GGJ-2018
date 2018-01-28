@@ -194,7 +194,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1457876430116060}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -210,7 +210,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1373538809673398}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -326,15 +326,16 @@ MonoBehaviour:
   shipSpawnPoints:
   - {fileID: 4976017900777946}
   - {fileID: 4053943982512508}
+  - {fileID: 4911931463343436}
   targetZ: 1
   enableObstacleSpawn: 1
   obstacleSpawnDelay: 0
-  obstacleSpawnInterval: 30
+  obstacleSpawnInterval: 35
   obstacleVelocity: 0.6
   fortSpawnChance: 0
   enableShipSpawn: 1
-  shipSpawnDelay: 20
-  shipSpawnInterval: 30
+  shipSpawnDelay: 15
+  shipSpawnInterval: 15
 --- !u!114 &114666569572442934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,10 +363,9 @@ MonoBehaviour:
   Ship2Spawn: {x: 4, y: -2.75}
   ShipTetherPrefab: {fileID: 1933568364663934, guid: a007f849318c4864d91314e8a9587f7b,
     type: 2}
-  bulletPrefab: {fileID: 1597388650839762, guid: 6cae278e6e8be5d498d51edf8e02f1d4,
-    type: 2}
+  bulletPrefab: {fileID: 0}
   moveSpeed: 3
-  rotateSpeed: 3
+  rotateSpeed: 5
   ship1: {fileID: 0}
   ship2: {fileID: 0}
   tether: {fileID: 0}
