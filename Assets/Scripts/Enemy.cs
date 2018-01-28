@@ -139,6 +139,7 @@ public class Enemy : MonoBehaviour {
         {
             AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
             GameManager.instance.Explosion(transform.position, explosionPrefab);
+            Debug.Log(gameObject.name + " " + explosionPrefab);
             Destroy(transform.gameObject);
         }
     }
@@ -155,6 +156,7 @@ public class Enemy : MonoBehaviour {
             GameManager.instance.applyDamage(collisionDamage);
             AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
             GameManager.instance.Explosion(transform.position, explosionPrefab);
+            Debug.Log(gameObject.name + " " + explosionPrefab);
             Destroy(transform.gameObject);
         } else if (collision.transform.CompareTag("Player Bullet"))
         {

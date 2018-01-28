@@ -67,6 +67,19 @@ public class Spawner : MonoBehaviour {
     {
         if (collision.transform.tag == "Player")
         {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            Transform otherPlayer = null;
+            foreach (GameObject player in players)
+            {
+                if (player != collision.gameObject)
+                    otherPlayer = player.transform;
+            }
+            /*if (otherPlayer != null)
+                collision.transform.position = otherPlayer.position;
+            else*/
+            collision.transform.position = GameManager.instance.Ship1Spawn;
+            GameManager.instance.applyDamage(250f);
+
             Debug.Log("Player outside of destroy zone!");
             return;
         }

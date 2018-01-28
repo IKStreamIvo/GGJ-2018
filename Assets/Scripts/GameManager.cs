@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour {
                 if (pos.x > maxX) pos.x = maxX;
 
                 // vertical contraint-
-                if (pos.y < minY) pos.y = minY;
+                //if (pos.y < minY) pos.y = minY;
                 if (pos.y > maxY) pos.y = maxY;
 
                 // Update position
@@ -375,6 +375,7 @@ public class GameManager : MonoBehaviour {
     {
         if (prefab == null)
             prefab = explosionPrefab;
-        Instantiate(prefab, position, Quaternion.identity, GameObject.Find("Background").transform.GetChild(1));
+        if(GameObject.Find("Background").transform.childCount > 1)
+            Instantiate(prefab, position, Quaternion.identity, GameObject.Find("Background").transform.GetChild(1));
     }
 }
