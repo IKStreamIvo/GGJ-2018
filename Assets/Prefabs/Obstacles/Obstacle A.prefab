@@ -584,6 +584,8 @@ MonoBehaviour:
   health: 500
   fireRate: 10
   bulletSpeed: 3
+  explosionPrefab: {fileID: 1546164548202330, guid: fa321b22b8b0c604ca0323fd1492ae8e,
+    type: 2}
   disableAutoFire: 0
   bullet: {fileID: 1884456372365390, guid: e6701fd84f14b3347b1d125dc761fad7, type: 2}
   bulletSpawns:
@@ -607,6 +609,8 @@ MonoBehaviour:
   health: 500
   fireRate: 10
   bulletSpeed: 3
+  explosionPrefab: {fileID: 1244053211886402, guid: 80e90df65fe9ffe409ebc92f7f5563da,
+    type: 2}
   disableAutoFire: 0
   bullet: {fileID: 1884456372365390, guid: e6701fd84f14b3347b1d125dc761fad7, type: 2}
   bulletSpawns:
