@@ -7,7 +7,9 @@ public class Enemy : MonoBehaviour {
     public float health = 500f;
     public float fireRate = 75f;
     public float bulletSpeed = 3f;
-    
+
+    public GameObject explosionPrefab;
+
     //public float rotationSpeed = 5f;
 
     public bool disableAutoFire = false;
@@ -136,7 +138,7 @@ public class Enemy : MonoBehaviour {
         if (health <= 0)
         {
             AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
-            GameManager.instance.Explosion(transform.position);
+            GameManager.instance.Explosion(transform.position, explosionPrefab);
             Destroy(transform.gameObject);
         }
     }
@@ -152,7 +154,7 @@ public class Enemy : MonoBehaviour {
         {
             GameManager.instance.applyDamage(collisionDamage);
             AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
-            GameManager.instance.Explosion(transform.position);
+            GameManager.instance.Explosion(transform.position, explosionPrefab);
             Destroy(transform.gameObject);
         } else if (collision.transform.CompareTag("Player Bullet"))
         {

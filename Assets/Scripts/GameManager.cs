@@ -371,8 +371,10 @@ public class GameManager : MonoBehaviour {
         healthBar.GetChild(0).GetComponent<Text>().text = (((float)currentTeamHealth/(float)maxTeamHealth) * 100f).ToString() + "%";
     }
 
-    public void Explosion(Vector2 position)
+    public void Explosion(Vector2 position, GameObject prefab = null)
     {
-        Instantiate(explosionPrefab, position, Quaternion.identity, GameObject.Find("Background").transform.GetChild(1));
+        if (prefab == null)
+            prefab = explosionPrefab;
+        Instantiate(prefab, position, Quaternion.identity, GameObject.Find("Background").transform.GetChild(1));
     }
 }
