@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
 
@@ -9,11 +10,15 @@ public class GameManager : MonoBehaviour {
 
     public bool GameOver;
 
+    int Score = 0;
+
     public float maxTeamHealth = 1000f;
-    float currentTeamHealth;
+    public float currentTeamHealth;
 
     public RectTransform healthBar;
     float healthScale;
+
+    public TextMeshProUGUI scoreText;
 
     public GameUI gameUI;
     public GameObject explosionPrefab;
@@ -72,6 +77,41 @@ public class GameManager : MonoBehaviour {
         tether.ship2 = ship2;
         currentTeamHealth = maxTeamHealth;
         healthScale = healthBar.sizeDelta.x / currentTeamHealth;
+
+        Score = 0;
+    }
+
+    public void AddScore(int points)
+    {
+        Score += points;
+        scoreText.text = "Score:\n" + Score;
+    }
+
+    public void turnInvincibleOn(Ship ship, float time)
+    {
+        // Move tag to invincible
+        ship.gameObject.tag = "Invincible";
+        ship.gameObject.layer = LayerMask.NameToLayer("Invincible");
+
+        StartCoroutine(turnInvincibleOff(ship, time));
+    }
+
+    IEnumerator turnInvincibleOff(Ship ship, float time)
+    {
+        yield return new WaitForSeconds(time);
+        ship.gameObject.tag = "Player";
+        ship.gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+
+    public void turnWeaponUpgradeOn(Ship ship, float time)
+    {
+        StartCoroutine(turnWeaponUpgradeOff(ship, time));
+    }
+
+    IEnumerator turnWeaponUpgradeOff(Ship ship, float time)
+    {
+        yield return new WaitForSeconds(time);
+        
     }
 
     void SetGameBounds()
@@ -364,8 +404,7 @@ public class GameManager : MonoBehaviour {
             Destroy(ship2.gameObject);
             Destroy(tether.gameObject);
             GameOver = true;
-            int score = 15;
-            gameUI.GameOver(score);
+            gameUI.GameOver(Score);
         }
         healthBar.sizeDelta = new Vector2(currentTeamHealth * healthScale, healthBar.sizeDelta.y);
         healthBar.GetChild(0).GetComponent<Text>().text = (((float)currentTeamHealth/(float)maxTeamHealth) * 100f).ToString() + "%";

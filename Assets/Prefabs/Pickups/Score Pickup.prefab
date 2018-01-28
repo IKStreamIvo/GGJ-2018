@@ -37,9 +37,9 @@ GameObject:
   - component: {fileID: 4303092761295478}
   - component: {fileID: 58694519287923316}
   - component: {fileID: 50455968534690520}
-  - component: {fileID: 114861917944619604}
+  - component: {fileID: 114370108727127892}
   m_Layer: 15
-  m_Name: ScorePickup
+  m_Name: Score Pickup
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &114861917944619604
+--- !u!114 &114370108727127892
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -115,9 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1411195396142892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9069ecdb9a60d4e86615a6a376bbc9, type: 3}
+  m_Script: {fileID: 11500000, guid: b19454233957d9740a4297e4a5bdedf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BonusScore: 1500
 --- !u!212 &212692368890020386
 SpriteRenderer:
   m_ObjectHideFlags: 1

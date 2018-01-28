@@ -13,6 +13,7 @@ public class Pickup : MonoBehaviour {
     public virtual void getPickup(Ship playerShip)
     {
         Debug.Log("Pickup collected");
+        AudioManager.instance.PlaySound(AudioManager.Sound.ItemPickup);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

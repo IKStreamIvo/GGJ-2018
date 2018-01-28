@@ -12,6 +12,7 @@ TagManager:
   - Destroy on Leave
   - Enemy Bullet
   - Pickup
+  - Invincible
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Enemy Ship
   - Fort Bullet
   - Pickup
-  - 
+  - Invincible
   - 
   - 
   - 
