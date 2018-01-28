@@ -155,6 +155,8 @@ public class GameManager : MonoBehaviour {
                 p1charge += chargeSpeed * Time.deltaTime;
                 if (p1charge >= fullyChargedValue)
                 {
+                    if (!p1fullyCharged)
+                        AudioManager.instance.PlaySound(AudioManager.Sound.Player1Charged);
                     p1fullyCharged = true;
                     ship1.animator.SetBool("FullyCharged", true);
                 }
@@ -182,6 +184,8 @@ public class GameManager : MonoBehaviour {
                 p2charge += chargeSpeed * Time.deltaTime;
                 if (p2charge >= fullyChargedValue)
                 {
+                    if (!p2fullyCharged)
+                        AudioManager.instance.PlaySound(AudioManager.Sound.Player2Charged);
                     p2fullyCharged = true;
                     ship2.animator.SetBool("FullyCharged", true);
                 }
