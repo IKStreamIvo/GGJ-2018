@@ -8,9 +8,6 @@ public class ShipSelector : MonoBehaviour {
     public Transform P1Text;
     public Transform P2Text;
 
-    public Transform SelectButton1;
-    public Transform SelectButton2;
-
     private bool p1axisInUse;
     private bool p2axisInUse;
 
