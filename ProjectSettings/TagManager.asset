@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - Destroy on Leave
   - Enemy Bullet
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Player Bullets
   - Enemy Ship
   - Fort Bullet
-  - 
+  - Pickup
   - 
   - 
   - 
