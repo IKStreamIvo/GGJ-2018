@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 
     public GameUI gameUI;
     public GameObject explosionPrefab;
+    public GameObject teleportPointer;
 
     public GameObject[] ShipPrefabs;
     public Vector2 Ship1Spawn;
@@ -134,6 +135,23 @@ public class GameManager : MonoBehaviour {
             ///key down and was previously pressed?
             if (p1tp == 1 && p1tpDown)
             {
+                float angle = ship1.transform.eulerAngles.z;
+                Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
+                Vector2 targetPos = ship1.transform.position + direction * teleportDistance;
+                float shipSize = ship1.coll.radius;
+                ///cast that point for collisions
+                int layerMask = LayerMask.GetMask("Obstacles");
+                Collider2D colls = Physics2D.OverlapCircle(targetPos, shipSize, layerMask);
+                if (colls != null)
+                {
+                    RaycastHit2D hit = Physics2D.Raycast(ship1.transform.position, new Vector2(direction.x, direction.y), teleportDistance, layerMask);
+                    if (hit.collider != null)
+                    {
+                        targetPos = new Vector3(hit.point.x, hit.point.y - shipSize);
+                    }
+                }
+                teleportPointer.transform.position = targetPos;
+
                 p1charge += chargeSpeed * Time.deltaTime;
                 if (p1charge >= fullyChargedValue)
                 {
@@ -143,6 +161,24 @@ public class GameManager : MonoBehaviour {
             }
             if (p2tp == 1 && p2tpDown)
             {
+                teleportPointer.SetActive(true);
+                float angle = ship2.transform.eulerAngles.z;
+                Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
+                Vector2 targetPos = ship2.transform.position + direction * teleportDistance;
+                float shipSize = ship2.coll.radius;
+                ///cast that point for collisions
+                int layerMask = LayerMask.GetMask("Obstacles");
+                Collider2D colls = Physics2D.OverlapCircle(targetPos, shipSize, layerMask);
+                if (colls != null)
+                {
+                    RaycastHit2D hit = Physics2D.Raycast(ship2.transform.position, new Vector2(direction.x, direction.y), teleportDistance, layerMask);
+                    if (hit.collider != null)
+                    {
+                        targetPos = new Vector3(hit.point.x, hit.point.y - shipSize);
+                    }
+                }
+                teleportPointer.transform.position = targetPos;
+
                 p2charge += chargeSpeed * Time.deltaTime;
                 if (p2charge >= fullyChargedValue)
                 {
@@ -156,11 +192,17 @@ public class GameManager : MonoBehaviour {
             {
                 p1tpDown = true;
                 ship1.animator.SetBool("IsCharging", true);
+
+                teleportPointer.SetActive(true);
+                teleportPointer.GetComponent<SpriteRenderer>().sprite = ship1.GetComponentInChildren<SpriteRenderer>().sprite;
             }
             if (p2tp == 1 && !p1tpDown) //key down + other not charging
             {
                 p2tpDown = true;
                 ship2.animator.SetBool("IsCharging", true);
+
+                teleportPointer.SetActive(true);
+                teleportPointer.GetComponent<SpriteRenderer>().sprite = ship2.GetComponentInChildren<SpriteRenderer>().sprite;
             }
 
             //GetButtonUp
@@ -172,13 +214,18 @@ public class GameManager : MonoBehaviour {
                     ///get direction
                     float angle = ship1.transform.eulerAngles.z;
                     Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
-                    Vector3 targetPos = ship1.transform.position + direction * teleportDistance;
+                    Vector2 targetPos = ship1.transform.position + direction * teleportDistance;
                     float shipSize = ship1.coll.radius;
                     ///cast that point for collisions
-                    Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
-                    if (hit != null)
+                    int layerMask = LayerMask.GetMask("Obstacles");
+                    Collider2D colls = Physics2D.OverlapCircle(targetPos, shipSize, layerMask);
+                    if (colls != null)
                     {
-                        targetPos = ship1.transform.position + direction * (Mathf.Abs(hit.Distance(ship1.coll).distance / 2f));
+                        RaycastHit2D hit = Physics2D.Raycast(ship1.transform.position, new Vector2(direction.x, direction.y), teleportDistance, layerMask);
+                        if (hit.collider != null)
+                        {
+                            targetPos = new Vector3(hit.point.x, hit.point.y - shipSize);
+                        }
                     }
                     ///teleport
                     ship1.transform.position = targetPos;
@@ -188,6 +235,7 @@ public class GameManager : MonoBehaviour {
                 p1charge = 0f;
                 ship1.animator.SetBool("IsCharging", false);
                 ship1.animator.SetBool("FullyCharged", false);
+                teleportPointer.SetActive(false);
 
             }
             if (p2tp == 0 && p2tpDown)
@@ -198,13 +246,18 @@ public class GameManager : MonoBehaviour {
                     ///get direction
                     float angle = ship2.transform.eulerAngles.z;
                     Vector3 direction = new Vector3(Mathf.Sin(-Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
-                    Vector3 targetPos = ship2.transform.position + direction * teleportDistance;
+                    Vector2 targetPos = ship2.transform.position + direction * teleportDistance;
                     float shipSize = ship2.coll.radius;
                     ///cast that point for collisions
-                    Collider2D hit = Physics2D.OverlapCircle(targetPos, shipSize - .2f);
-                    if (hit != null)
+                    int layerMask = LayerMask.GetMask("Obstacles");
+                    Collider2D colls = Physics2D.OverlapCircle(targetPos, shipSize, layerMask);
+                    if (colls != null)
                     {
-                        targetPos = ship2.transform.position + direction * (Mathf.Abs(hit.Distance(ship2.coll).distance / 2f));
+                        RaycastHit2D hit = Physics2D.Raycast(ship2.transform.position, new Vector2(direction.x, direction.y), teleportDistance, layerMask);
+                        if (hit.collider != null)
+                        {
+                            targetPos = new Vector3(hit.point.x, hit.point.y - shipSize);
+                        }
                     }
                     ///teleport
                     ship2.transform.position = targetPos;
@@ -214,6 +267,7 @@ public class GameManager : MonoBehaviour {
                 p2charge = 0f;
                 ship2.animator.SetBool("IsCharging", false);
                 ship2.animator.SetBool("FullyCharged", false);
+                teleportPointer.SetActive(false);
             }
         }
         else
@@ -222,6 +276,7 @@ public class GameManager : MonoBehaviour {
             ship2.animator.SetBool("IsCharging", false);
             p1charge = 0f;
             p2charge = 0f;
+            teleportPointer.SetActive(false);
         }
     }
 
