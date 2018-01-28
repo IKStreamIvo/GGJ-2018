@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour {
     {
         if (collision.collider.CompareTag("Player"))
         {
+            if(collision.collider.name.Contains("1"))
+                AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage1);
+            else
+                AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage3);
+
             GameManager.instance.applyDamage(damage);
             Destroy(transform.gameObject);
         } else if (collision.collider.CompareTag("Obstacle"))

@@ -82,6 +82,17 @@ public class Enemy : MonoBehaviour {
                 {
                     for (int i = 0; i < bulletSpawns.Count; i++)
                     {
+                        if (gameObject.layer == 10)
+                        {
+                            //fort
+                            AudioManager.instance.PlaySound(AudioManager.Sound.FortLaser);
+                        }
+                        else
+                        {
+                            //ship
+                            AudioManager.instance.PlaySound(AudioManager.Sound.EnemyLaser);
+                        }
+
                         Transform bulletSpawn = bulletSpawns[i];
                         GameObject bulletGO = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                         bulletGO.GetComponent<Bullet>().damage = damage;
@@ -91,6 +102,17 @@ public class Enemy : MonoBehaviour {
                     }
                 } else
                 {
+                    if (gameObject.layer == 10)
+                    {
+                        //fort
+                        AudioManager.instance.PlaySound(AudioManager.Sound.FortLaser);
+                    }
+                    else
+                    {
+                        //ship
+                        AudioManager.instance.PlaySound(AudioManager.Sound.EnemyLaser);
+                    }
+
                     lastSpawn = (lastSpawn + 1) % bulletSpawns.Count;
                     Transform bulletSpawn = bulletSpawns[lastSpawn];
                     GameObject bulletGO = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
@@ -129,6 +151,8 @@ public class Enemy : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             GameManager.instance.applyDamage(collisionDamage);
+            AudioManager.instance.PlaySound(AudioManager.Sound.EnemyExplode);
+            GameManager.instance.Explosion(transform.position);
             Destroy(transform.gameObject);
         } else if (collision.transform.CompareTag("Player Bullet"))
         {

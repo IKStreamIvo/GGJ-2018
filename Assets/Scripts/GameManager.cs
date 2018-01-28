@@ -137,7 +137,6 @@ public class GameManager : MonoBehaviour {
                 p1charge += chargeSpeed * Time.deltaTime;
                 if (p1charge >= fullyChargedValue)
                 {
-                    Debug.Log("Fully Charged");
                     p1fullyCharged = true;
                     ship1.animator.SetBool("FullyCharged", true);
                 }
@@ -296,14 +295,6 @@ public class GameManager : MonoBehaviour {
 
     public void applyDamage(float damage)
     {
-        int rnd = Random.Range(0, 3);
-        if (rnd == 0)
-            AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage1);
-        else if(rnd == 1)
-            AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage2);
-        else
-            AudioManager.instance.PlaySound(AudioManager.Sound.TakeDamage3);
-
         currentTeamHealth -= damage;
         if (currentTeamHealth <= 0)
         {
@@ -323,6 +314,6 @@ public class GameManager : MonoBehaviour {
 
     public void Explosion(Vector2 position)
     {
-        Instantiate(explosionPrefab, position, Quaternion.identity);
+        Instantiate(explosionPrefab, position, Quaternion.identity, GameObject.Find("Background").transform.GetChild(1));
     }
 }
